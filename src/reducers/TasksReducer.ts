@@ -36,7 +36,7 @@ let InitialState = [
         assignerId: "2671355",
         commentCount: 10,
         isCompleted: false,
-        content: "Buy Milk",
+        content: "Buy 1",
         description: "",
         due: {
             date: "2016-09-01",
@@ -186,7 +186,7 @@ let InitialState = [
         assignerId: "2671355",
         commentCount: 10,
         isCompleted: false,
-        content: "Buy Milk",
+        content: "Buy 3",
         description: "",
         due: {
             date: "2016-09-01",
@@ -211,7 +211,7 @@ let InitialState = [
         assignerId: "2671355",
         commentCount: 10,
         isCompleted: false,
-        content: "Buy Meat",
+        content: "Buy 5",
         description: "",
         due: {
             date: "2016-09-01",

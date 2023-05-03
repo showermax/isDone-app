@@ -8,7 +8,7 @@ type PropsType ={
 }
 export const Todolist = (props:PropsType) => {
     const {id, filter} = props
-    const tasks = useAppSelector(TasksSelector)
+    const tasks = useAppSelector(TasksSelector).filter(el=>el.projectId===id)
 
     return (
         <div>
