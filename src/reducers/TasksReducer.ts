@@ -189,7 +189,7 @@ let InitialState = [
         content: "Buy 3",
         description: "",
         due: {
-            date: "2016-09-01",
+            date: "2023-04-05",
             isRecurring: false,
             datetime: "2016-09-01T12:00:00.000000Z",
             string: "tomorrow at 12",

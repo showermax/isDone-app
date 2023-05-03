@@ -1,24 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import style from './MainContent.module.css'
 import {Todolist} from "./Todolist";
 import {Routes,Route} from "react-router-dom";
 import {useAppSelector} from "../hooks/hooks";
 import {ListsSelector} from "../reducers/Selectors";
+import {Navbar} from "./Navbar";
 
 export const MainContent = () => {
-    const date = new Date()
-    const today = date.toLocaleDateString('en-US').split('/').reverse().map(el=>el.length<2 ? '0'+el:el).join('-')
+    const [filter,setFilter] = useState('')
     let lists = useAppSelector(ListsSelector)
-    // const today = date.getFullYear() + '-' +
-    //     `${date.getMonth().toString().length > 1 ? date.getMonth().toString() : '0'+date.getMonth().toString()}` + '-' +
-    //     `${date.getDate().toString().length > 1 ? date.getDate().toString() : '0'+date.getDate().toString()}`
-    console.log(today)
-    console.log(date.toLocaleDateString('en-US'))
+    const showForToday=(s:string)=>{
+        setFilter(s)
+    }
     return (
         <div className={style.wrapper}>
-            <div className={style.sidebar}>Navbar</div>
+            <div className={style.sidebar}><Navbar showForToday={showForToday}/></div>
            <Routes>
-               {lists.map(el=><Route path={`/${el.name}`} element={<Todolist id={el.id} filter={''}/>} /> )}
+               {lists.map(el=><Route path={`/${el.name}`} element={<Todolist id={el.id} filter={filter}/>} /> )}
            </Routes>
 
         </div>

@@ -8,11 +8,15 @@ type PropsType ={
 }
 export const Todolist = (props:PropsType) => {
     const {id, filter} = props
-    const tasks = useAppSelector(TasksSelector).filter(el=>el.projectId===id)
-
+    const date = new Date()
+    const today = date.toLocaleDateString('en-US').split('/').reverse().map(el=>el.length<2 ? '0'+el:el).join('-')
+    console.log(today)
+    let tasks = useAppSelector(TasksSelector)
+    let tasksTorender = tasks.filter(el=>el.projectId===id)
+    if (filter) tasksTorender = tasks.filter(el=>el.due.date===today)
     return (
         <div>
-            {tasks.map(el=><div>{el.content}</div>)}
+            {tasksTorender.map(el=><div>{el.content}</div>)}
         </div>
     );
 };
