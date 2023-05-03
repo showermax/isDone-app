@@ -30,6 +30,48 @@ const InitialState = [
         isTeamInbox: false,
         url: "https://todoist.com/showProject?id=220474322",
         viewStyle: "list"
+    },
+    {
+        id: "2",
+        parentId: null,
+        order: 0,
+        color: "grey",
+        name: "Inbox",
+        commentCount: 10,
+        isShared: false,
+        isFavorite: false,
+        isInboxProject: true,
+        isTeamInbox: false,
+        url: "https://todoist.com/showProject?id=220474322",
+        viewStyle: "list"
+    },
+    {
+        id: "3",
+        parentId: null,
+        order: 0,
+        color: "grey",
+        name: "Inbox",
+        commentCount: 10,
+        isShared: false,
+        isFavorite: false,
+        isInboxProject: true,
+        isTeamInbox: false,
+        url: "https://todoist.com/showProject?id=220474322",
+        viewStyle: "list"
+    },
+    {
+        id: "4",
+        parentId: null,
+        order: 0,
+        color: "grey",
+        name: "Inbox",
+        commentCount: 10,
+        isShared: false,
+        isFavorite: false,
+        isInboxProject: true,
+        isTeamInbox: false,
+        url: "https://todoist.com/showProject?id=220474322",
+        viewStyle: "list"
     }
 ]
 

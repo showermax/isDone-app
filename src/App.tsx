@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './done-checkmark-svgrepo-com.svg';
+import logo from './logo1.svg';
 import './App.css';
 import {MainContent} from "./components/MainContent";
 
