@@ -1,0 +1,15 @@
+
+.wrapper {
+    display: flex;
+    height: calc(100vh - 50px);
+}
+
+.sidebar {
+    min-width: 300px;
+    width: 5vw;
+    background: orange;
+}
+
+.container {
+    text-align: center;
+}
