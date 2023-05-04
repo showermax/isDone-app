@@ -1,7 +1,7 @@
 import React from "react";
-import {AnyAction, combineReducers, legacy_createStore as createStore} from "redux";
+import {AnyAction, applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
 import {ListReducer} from "../reducers/ListReducer";
-import {ThunkAction, ThunkDispatch} from "redux-thunk";
+import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {TasksReducer} from "../reducers/TasksReducer";
 
 const Reducers = combineReducers({
@@ -9,7 +9,7 @@ const Reducers = combineReducers({
     tasks: TasksReducer,
 })
 
-export const store = createStore(Reducers)
+export const store = createStore(Reducers, applyMiddleware(thunk))
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = ThunkDispatch<RootState, unknown, AnyAction>

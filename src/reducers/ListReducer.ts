@@ -1,9 +1,11 @@
 import React from 'react';
 import {RootState} from "../redux/store";
+import {Dispatch} from "redux";
+import {api} from "../api/api";
 
 export type ListType = {
     id: string
-    parentId: string | null,
+    parentId?: string | null | undefined,
     order: number
     color: string
     name: string
@@ -77,8 +79,26 @@ const InitialState = [
 
 export const ListReducer= (state:ListType[] = InitialState, action:any):ListType[] => {
     switch (action.type) {
-        case 'GET-LIST': return state
+        case 'GET-LISTS': return action.payload.response
         default: return state
     }
 };
 
+const getListsAC = (response: ListType[])=>{
+    console.log(response)
+    return {
+        type: 'GET-LISTS',
+        payload:{
+            response
+        }
+    } as const
+}
+export const getListsTC=()=>async(dispatch:Dispatch)=>{
+    try{
+        let response = await api.getProjects()
+        dispatch(getListsAC(response))
+        console.log(response)
+    }catch (e) {
+
+    }
+}

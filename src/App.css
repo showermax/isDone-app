@@ -1,12 +1,14 @@
 .App {
-  background: #002429;
+  background: #26272e;
   display: flex;
   flex-direction: column;
+  color:white;
 }
 
 .App-logo {
   height: 50px;
   pointer-events: none;
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -17,7 +19,7 @@
 
 .App-header {
   padding: 2px 20px;
-  background-color: #002440;
+  background-color: #1b1c21;
   height: 50px;
   display: flex;
   align-items: center;
