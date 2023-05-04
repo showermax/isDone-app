@@ -1,32 +1,34 @@
 import React from 'react';
 import {ListType} from "./ListReducer";
+import {Dispatch} from "redux";
+import {api} from "../api/api";
 
 export type TaskType =
-{
-    creatorId: string
+    {
+        creatorId: string
         createdAt: string
-    assigneeId: string
-    assignerId: string
-    commentCount: number
-    isCompleted: boolean
-    content: string
-    description: string
-    due: {
-        date: string
-        isRecurring: boolean
-        datetime: string
-        string: string
-        timezone: string
-    },
-    id: string
+        assigneeId?: string | null | undefined
+        assignerId?: string | null | undefined
+        commentCount: number
+        isCompleted: boolean
+        content: string | null | undefined
+        description: string | null | undefined
+        due?: {
+            date: string | null
+            isRecurring: boolean
+            datetime?: string | null | undefined
+            string: string
+            timezone?: string | null | undefined
+        } | undefined | null,
+        id: string
         labels: string[]
-    order: number
-    priority:number
-    projectId: string
-    sectionId: string
-    parentId: string
-    url: string
-}
+        order: number
+        priority: number
+        projectId?: string | null | undefined
+        sectionId?: string | null | undefined
+        parentId?: string | null | undefined
+        url: string
+    }
 
 let InitialState = [
     {
@@ -230,12 +232,25 @@ let InitialState = [
         url: "https://todoist.com/showTask?id=2995104339"
     },
 ]
-export const TasksReducer = (state:TaskType[] = InitialState, action:any):TaskType[] => {
+export const TasksReducer = (state: TaskType[] = InitialState, action: any): TaskType[] => {
     switch (action.type) {
-        case 'GET-LIST':
-            return state
-        default:
-            return state
+        case 'GET-TASKS':{return action.payload.tasks}
+        default: return state
     }
 };
 
+const getTasksAC = (tasks:TaskType[]) => {
+    return {
+        type: 'GET-TASKS',
+        payload: {tasks}
+    } as const
+}
+
+export const getTasksTC = () => async (dispatch: Dispatch) => {
+    try {
+        let tasks = await api.getTasks()
+        dispatch(getTasksAC(tasks))
+    } catch (e) {
+
+    }
+}
