@@ -1,5 +1,6 @@
 import React from 'react';
 import {useAppSelector} from "../hooks/hooks";
+import style from "./Todolist.module.css"
 import {ListsSelector, TasksSelector} from "../reducers/Selectors";
 
 type PropsType ={
@@ -12,11 +13,15 @@ export const Todolist = (props:PropsType) => {
     const today = date.toLocaleDateString('en-US').split('/').reverse().map(el=>el.length<2 ? '0'+el:el).join('-')
     console.log(today)
     let tasks = useAppSelector(TasksSelector)
-    let tasksTorender = tasks.filter(el=>el.projectId===id)
-    if (filter) tasksTorender = tasks.filter(el=>el.due.date===today)
+    let tasksToRender = tasks.filter(el=>el.projectId===id)
+    if (filter) tasksToRender = tasks.filter(el=>el.due.date===today)
     return (
-        <div>
-            {tasksTorender.map(el=><div>{el.content}</div>)}
+        <div className={style.listWrapper}>
+            {tasksToRender.map(el=>
+                <div key={el.id} className={style.item}>
+                    <input type={'checkbox'} checked={false} />
+                    {el.content}
+                </div>)}
         </div>
     );
 };

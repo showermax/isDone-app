@@ -10,11 +10,17 @@ export const Navbar = (props:PropsType) => {
     const {showForToday} = props
     let lists = useAppSelector(ListsSelector)
     return (
-        <div>
-            <div className={style.namvbarItem} onClick={()=>showForToday('')}><NavLink to={'Inbox'}>Inbox</NavLink></div>
-            <div className={style.namvbarItem} onClick={()=>showForToday('Today')}>Today</div>
-            {lists.filter(el=>el.name !== 'Inbox').map(el=><div className={style.namvbarItem} onClick={()=>showForToday('')}><NavLink to={el.name}>{el.name}</NavLink></div>)}
-        </div>
+        <>
+            <div className={style.navbarGroup}>
+                <div className={style.navbarItem} onClick={() => showForToday('')}><NavLink to={'Inbox'}>Inbox</NavLink>
+                </div>
+                <div className={style.navbarItem} onClick={() => showForToday('Today')}>Today</div>
+            </div>
+            <div className={style.navbarGroup}>
+                {lists.filter(el=>el.name !== 'Inbox').map(el=><div className={style.navbarItem} onClick={()=>showForToday('')}><NavLink to={el.name}>{el.name}</NavLink></div>)}
+            </div>
+
+        </>
     );
 };
 
