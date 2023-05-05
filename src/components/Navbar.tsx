@@ -12,12 +12,12 @@ export const Navbar = (props:PropsType) => {
     return (
         <>
             <div className={style.navbarGroup}>
-                <div className={style.navbarItem} onClick={() => showForToday('')}><NavLink to={'Inbox'}>Inbox</NavLink>
-                </div>
-                <div className={style.navbarItem} onClick={() => showForToday('Today')}>Today</div>
+                <NavLink to={'Inbox'}><div className={style.navbarItem} onClick={() => showForToday('')}>Inbox</div></NavLink>
+
+                <NavLink to={'Inbox'}><div className={style.navbarItem} onClick={() => showForToday('Today')}>Today</div></NavLink>
             </div>
             <div className={style.navbarGroup}>
-                {lists.filter(el=>el.name !== 'Inbox').map(el=><div className={style.navbarItem} onClick={()=>showForToday('')}><NavLink to={el.name}>{el.name}</NavLink></div>)}
+                {lists.filter(el=>el.name !== 'Inbox').map(el=><NavLink to={el.name}><div className={style.navbarItem} onClick={()=>showForToday('')}>{el.name}</div></NavLink>)}
             </div>
 
         </>

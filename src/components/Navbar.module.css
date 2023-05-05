@@ -4,7 +4,7 @@
     gap: 1rem;
 }
 .navbarItem {
-    display: inline-block;
+    /*display: inline-block;*/
     margin: 0 10px;
     text-align: left;
     padding: 5%;

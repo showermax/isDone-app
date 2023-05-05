@@ -232,17 +232,27 @@ let InitialState = [
         url: "https://todoist.com/showTask?id=2995104339"
     },
 ]
-export const TasksReducer = (state: TaskType[] = InitialState, action: any): TaskType[] => {
+export const TasksReducer = (state: TaskType[] = InitialState, action: ActionsType): TaskType[] => {
     switch (action.type) {
-        case 'GET-TASKS':{return action.payload.tasks}
+        case 'GET-TASKS':return action.payload.tasks
+        case 'ADD-TASK':return [action.payload.newTask, ...state]
+
         default: return state
     }
 };
+type ActionsType = ReturnType<typeof getTasksAC> | ReturnType<typeof addTaskAC>
 
 const getTasksAC = (tasks:TaskType[]) => {
     return {
         type: 'GET-TASKS',
         payload: {tasks}
+    } as const
+}
+
+const addTaskAC = (newTask:TaskType) => {
+    return {
+        type: 'ADD-TASK',
+        payload: {newTask}
     } as const
 }
 
@@ -252,5 +262,14 @@ export const getTasksTC = () => async (dispatch: Dispatch) => {
         dispatch(getTasksAC(tasks))
     } catch (e) {
 
+    }
+}
+
+export const addTaskTC = (projectId:string, content: string) => async (dispatch: Dispatch) => {
+    try {
+        let newTask = await api.addTask({projectId, content})
+        dispatch(addTaskAC(newTask))
+    } catch (e) {
+        console.log(e)
     }
 }
