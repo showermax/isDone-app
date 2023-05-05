@@ -30,7 +30,7 @@ export const Todolist = (props:PropsType) => {
             <button onClick={()=>dispatch(addTaskTC(id,'newTask'))}>add new task</button>
             {tasksToRender.map(el=>
                 <div key={el.id} className={style.item}>
-                    <input type='checkbox' />
+                    <div ><input type='checkbox' className={style.roundCheckbox}/></div>
                     {el.content}
                 </div>)}
 
