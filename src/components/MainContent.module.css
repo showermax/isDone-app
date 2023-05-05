@@ -20,6 +20,6 @@
     display: flex;
     justify-content: space-around;
     margin:0 auto;
-    background: orange;
+    background:#26272e;
     overflow: auto;
 }

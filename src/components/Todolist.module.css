@@ -1,10 +1,13 @@
 .listWrapper {
     width: 800px;
+    padding-top: 30px;
 }
 .item {
     display: flex;
     border-bottom: 1px solid grey;
     padding: 5px;
+    height: 2.5rem;
+    line-height:2.5rem;
 }
 .roundCheckbox {
     width: 1.3em;
