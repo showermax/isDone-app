@@ -17,14 +17,13 @@ export const Todolist = (props:PropsType) => {
     // }, [])
     const {id, filter} = props
     const date = new Date()
-    const today= date.toLocaleDateString('en-US').split('/').map(el=>el.length<2 ? '0'+el:el)
-
+//     const today= date.toLocaleDateString('en-US').split('/').map(el=>el.length<2 ? '0'+el:el)
+// today.shift('today[2]')
     // [today[0], today[2]]=[today[2],today[0]]
-    console.log(today)
 
     let tasksToRender = tasks.filter(el=>el.projectId===id)
     // if (filter) tasksToRender = tasks.filter(el=>el.due.date===today)
-    console.log(tasks)
+
     return (
         <div className={style.listWrapper}>
             <button onClick={()=>dispatch(addTaskTC(id,'newTask'))}>add new task</button>

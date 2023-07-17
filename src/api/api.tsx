@@ -1,6 +1,6 @@
 import { TodoistApi } from "@doist/todoist-api-typescript"
 
-export const api = new TodoistApi("06e90790456e05d4a68e45f8a06ca6179feab247")
+export const api = new TodoistApi("cf1fa9f1da3b9a7bdaff8c15567d882c7b12d185")
 
 api.getProjects()
     .then((projects) => console.log(projects))
