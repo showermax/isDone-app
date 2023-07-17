@@ -5,16 +5,16 @@ import {Routes, Route} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import {ListsSelector} from "../reducers/Selectors";
 import {Navbar} from "./Navbar";
-import {api} from "../api/api";
+
 import {getListsTC} from "../reducers/ListReducer";
-import {useWindowSize} from "../hooks/useWindowSize";
+
 
 export const MainContent = (props: {showNavbar:boolean}) => {
-    let  windowSize=useWindowSize()
+
     const [filter, setFilter] = useState('')
     let lists = useAppSelector(ListsSelector)
     const dispatch = useAppDispatch()
-    // if (windowSize<600) setShowNavbar(true)
+
     useEffect(() => {
         dispatch(getListsTC())
     }, [])
