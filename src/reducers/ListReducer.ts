@@ -86,7 +86,6 @@ export const ListReducer= (state:ListType[] = InitialState, action:any):ListType
 };
 
 const getListsAC = (lists: ListType[])=>{
-
     return {
         type: 'GET-LISTS',
         payload:{
