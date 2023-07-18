@@ -4,6 +4,7 @@ import style from "./Todolist.module.css";
 
 import { addTaskTC, editTaskTC, getTasksTC } from "../reducers/TasksReducer";
 import { RootState } from "../redux/store";
+import { Task } from "./Task";
 
 type PropsType = {
   id: string;
@@ -30,18 +31,11 @@ export const Todolist = (props: PropsType) => {
   const addTask = () => {
     dispatch(addTaskTC(id, "newtask"));
   };
-  const editTaskHandler = (taskId: string) => {
-    dispatch(editTaskTC(id, taskId, { title: "newtask", deadline: new Date() }));
-  };
+
   return (
     <div className={style.listWrapper}>
       {taskSorted.map((el) => (
-        <div key={el.id} className={style.item}>
-          <div>
-            <input type="checkbox" className={style.roundCheckbox} />
-          </div>
-          <div onClick={() => editTaskHandler(el.id)}> {el.title}</div>
-        </div>
+        <Task task={el} />
       ))}
       <div className={`${style.item} ${style.addItem}`} onClick={addTask}>
         <div className={style.addIco}>+</div>{" "}
