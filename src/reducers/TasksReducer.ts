@@ -1,275 +1,278 @@
-import React from 'react';
-import {ListType} from "./ListReducer";
-import {Dispatch} from "redux";
-import {api} from "../api/api";
+import React from "react";
+import { ListType } from "./ListReducer";
+import { Dispatch } from "redux";
+import { apiTodoist } from "../api/apiTodoist";
 
-export type TaskType =
-    {
-        creatorId: string
-        createdAt: string
-        assigneeId?: string | null | undefined
-        assignerId?: string | null | undefined
-        commentCount: number
-        isCompleted: boolean
-        content: string | null | undefined
-        description: string | null | undefined
-        due?: {
-            date: string | null
-            isRecurring: boolean
-            datetime?: string | null | undefined
-            string: string
-            timezone?: string | null | undefined
-        } | undefined | null,
-        id: string
-        labels: string[]
-        order: number
-        priority: number
-        projectId?: string | null | undefined
-        sectionId?: string | null | undefined
-        parentId?: string | null | undefined
-        url: string
-    }
+export type TaskType = {
+  creatorId: string;
+  createdAt: string;
+  assigneeId?: string | null | undefined;
+  assignerId?: string | null | undefined;
+  commentCount: number;
+  isCompleted: boolean;
+  content: string | null | undefined;
+  description: string | null | undefined;
+  due?:
+    | {
+        date: string | null;
+        isRecurring: boolean;
+        datetime?: string | null | undefined;
+        string: string;
+        timezone?: string | null | undefined;
+      }
+    | undefined
+    | null;
+  id: string;
+  labels: string[];
+  order: number;
+  priority: number;
+  projectId?: string | null | undefined;
+  sectionId?: string | null | undefined;
+  parentId?: string | null | undefined;
+  url: string;
+};
 
 let InitialState = [
-    {
-        creatorId: "2671355",
-        createdAt: "2019-12-11T22:36:50.000000Z",
-        assigneeId: "2671362",
-        assignerId: "2671355",
-        commentCount: 10,
-        isCompleted: false,
-        content: "Buy 1",
-        description: "",
-        due: {
-            date: "2016-09-01",
-            isRecurring: false,
-            datetime: "2016-09-01T12:00:00.000000Z",
-            string: "tomorrow at 12",
-            timezone: "Europe/Moscow"
-        },
-        id: "2995104339",
-        labels: ["Food", "Shopping"],
-        order: 1,
-        priority: 1,
-        projectId: "1",
-        sectionId: "7025",
-        parentId: "2995104589",
-        url: "https://todoist.com/showTask?id=2995104339"
+  {
+    creatorId: "2671355",
+    createdAt: "2019-12-11T22:36:50.000000Z",
+    assigneeId: "2671362",
+    assignerId: "2671355",
+    commentCount: 10,
+    isCompleted: false,
+    content: "Buy 1",
+    description: "",
+    due: {
+      date: "2016-09-01",
+      isRecurring: false,
+      datetime: "2016-09-01T12:00:00.000000Z",
+      string: "tomorrow at 12",
+      timezone: "Europe/Moscow",
     },
-    {
-        creatorId: "2671355",
-        createdAt: "2019-12-11T22:36:50.000000Z",
-        assigneeId: "2671362",
-        assignerId: "2671355",
-        commentCount: 10,
-        isCompleted: false,
-        content: "Buy Meat",
-        description: "",
-        due: {
-            date: "2016-09-01",
-            isRecurring: false,
-            datetime: "2016-09-01T12:00:00.000000Z",
-            string: "tomorrow at 12",
-            timezone: "Europe/Moscow"
-        },
-        id: "2995104339",
-        labels: ["Food", "Shopping"],
-        order: 1,
-        priority: 1,
-        projectId: "1",
-        sectionId: "7025",
-        parentId: "2995104589",
-        url: "https://todoist.com/showTask?id=2995104339"
+    id: "2995104339",
+    labels: ["Food", "Shopping"],
+    order: 1,
+    priority: 1,
+    projectId: "1",
+    sectionId: "7025",
+    parentId: "2995104589",
+    url: "https://todoist.com/showTask?id=2995104339",
+  },
+  {
+    creatorId: "2671355",
+    createdAt: "2019-12-11T22:36:50.000000Z",
+    assigneeId: "2671362",
+    assignerId: "2671355",
+    commentCount: 10,
+    isCompleted: false,
+    content: "Buy Meat",
+    description: "",
+    due: {
+      date: "2016-09-01",
+      isRecurring: false,
+      datetime: "2016-09-01T12:00:00.000000Z",
+      string: "tomorrow at 12",
+      timezone: "Europe/Moscow",
     },
-    {
-        creatorId: "2671355",
-        createdAt: "2019-12-11T22:36:50.000000Z",
-        assigneeId: "2671362",
-        assignerId: "2671355",
-        commentCount: 10,
-        isCompleted: false,
-        content: "Buy Milk",
-        description: "",
-        due: {
-            date: "2016-09-01",
-            isRecurring: false,
-            datetime: "2016-09-01T12:00:00.000000Z",
-            string: "tomorrow at 12",
-            timezone: "Europe/Moscow"
-        },
-        id: "2995104339",
-        labels: ["Food", "Shopping"],
-        order: 1,
-        priority: 1,
-        projectId: "1",
-        sectionId: "7025",
-        parentId: "2995104589",
-        url: "https://todoist.com/showTask?id=2995104339"
+    id: "2995104339",
+    labels: ["Food", "Shopping"],
+    order: 1,
+    priority: 1,
+    projectId: "1",
+    sectionId: "7025",
+    parentId: "2995104589",
+    url: "https://todoist.com/showTask?id=2995104339",
+  },
+  {
+    creatorId: "2671355",
+    createdAt: "2019-12-11T22:36:50.000000Z",
+    assigneeId: "2671362",
+    assignerId: "2671355",
+    commentCount: 10,
+    isCompleted: false,
+    content: "Buy Milk",
+    description: "",
+    due: {
+      date: "2016-09-01",
+      isRecurring: false,
+      datetime: "2016-09-01T12:00:00.000000Z",
+      string: "tomorrow at 12",
+      timezone: "Europe/Moscow",
     },
-    {
-        creatorId: "2671355",
-        createdAt: "2019-12-11T22:36:50.000000Z",
-        assigneeId: "2671362",
-        assignerId: "2671355",
-        commentCount: 10,
-        isCompleted: false,
-        content: "Buy Meat",
-        description: "",
-        due: {
-            date: "2016-09-01",
-            isRecurring: false,
-            datetime: "2016-09-01T12:00:00.000000Z",
-            string: "tomorrow at 12",
-            timezone: "Europe/Moscow"
-        },
-        id: "2995104339",
-        labels: ["Food", "Shopping"],
-        order: 1,
-        priority: 1,
-        projectId: "2",
-        sectionId: "7025",
-        parentId: "2995104589",
-        url: "https://todoist.com/showTask?id=2995104339"
+    id: "2995104339",
+    labels: ["Food", "Shopping"],
+    order: 1,
+    priority: 1,
+    projectId: "1",
+    sectionId: "7025",
+    parentId: "2995104589",
+    url: "https://todoist.com/showTask?id=2995104339",
+  },
+  {
+    creatorId: "2671355",
+    createdAt: "2019-12-11T22:36:50.000000Z",
+    assigneeId: "2671362",
+    assignerId: "2671355",
+    commentCount: 10,
+    isCompleted: false,
+    content: "Buy Meat",
+    description: "",
+    due: {
+      date: "2016-09-01",
+      isRecurring: false,
+      datetime: "2016-09-01T12:00:00.000000Z",
+      string: "tomorrow at 12",
+      timezone: "Europe/Moscow",
     },
-    {
-        creatorId: "2671355",
-        createdAt: "2019-12-11T22:36:50.000000Z",
-        assigneeId: "2671362",
-        assignerId: "2671355",
-        commentCount: 10,
-        isCompleted: false,
-        content: "Buy Milk",
-        description: "",
-        due: {
-            date: "2016-09-01",
-            isRecurring: false,
-            datetime: "2016-09-01T12:00:00.000000Z",
-            string: "tomorrow at 12",
-            timezone: "Europe/Moscow"
-        },
-        id: "2995104339",
-        labels: ["Food", "Shopping"],
-        order: 1,
-        priority: 1,
-        projectId: "2",
-        sectionId: "7025",
-        parentId: "2995104589",
-        url: "https://todoist.com/showTask?id=2995104339"
+    id: "2995104339",
+    labels: ["Food", "Shopping"],
+    order: 1,
+    priority: 1,
+    projectId: "2",
+    sectionId: "7025",
+    parentId: "2995104589",
+    url: "https://todoist.com/showTask?id=2995104339",
+  },
+  {
+    creatorId: "2671355",
+    createdAt: "2019-12-11T22:36:50.000000Z",
+    assigneeId: "2671362",
+    assignerId: "2671355",
+    commentCount: 10,
+    isCompleted: false,
+    content: "Buy Milk",
+    description: "",
+    due: {
+      date: "2016-09-01",
+      isRecurring: false,
+      datetime: "2016-09-01T12:00:00.000000Z",
+      string: "tomorrow at 12",
+      timezone: "Europe/Moscow",
     },
-    {
-        creatorId: "2671355",
-        createdAt: "2019-12-11T22:36:50.000000Z",
-        assigneeId: "2671362",
-        assignerId: "2671355",
-        commentCount: 10,
-        isCompleted: false,
-        content: "Buy Meat",
-        description: "",
-        due: {
-            date: "2016-09-01",
-            isRecurring: false,
-            datetime: "2016-09-01T12:00:00.000000Z",
-            string: "tomorrow at 12",
-            timezone: "Europe/Moscow"
-        },
-        id: "2995104339",
-        labels: ["Food", "Shopping"],
-        order: 1,
-        priority: 1,
-        projectId: "2",
-        sectionId: "7025",
-        parentId: "2995104589",
-        url: "https://todoist.com/showTask?id=2995104339"
+    id: "2995104339",
+    labels: ["Food", "Shopping"],
+    order: 1,
+    priority: 1,
+    projectId: "2",
+    sectionId: "7025",
+    parentId: "2995104589",
+    url: "https://todoist.com/showTask?id=2995104339",
+  },
+  {
+    creatorId: "2671355",
+    createdAt: "2019-12-11T22:36:50.000000Z",
+    assigneeId: "2671362",
+    assignerId: "2671355",
+    commentCount: 10,
+    isCompleted: false,
+    content: "Buy Meat",
+    description: "",
+    due: {
+      date: "2016-09-01",
+      isRecurring: false,
+      datetime: "2016-09-01T12:00:00.000000Z",
+      string: "tomorrow at 12",
+      timezone: "Europe/Moscow",
     },
-    {
-        creatorId: "2671355",
-        createdAt: "2019-12-11T22:36:50.000000Z",
-        assigneeId: "2671362",
-        assignerId: "2671355",
-        commentCount: 10,
-        isCompleted: false,
-        content: "Buy 3",
-        description: "",
-        due: {
-            date: "2023-04-05",
-            isRecurring: false,
-            datetime: "2016-09-01T12:00:00.000000Z",
-            string: "tomorrow at 12",
-            timezone: "Europe/Moscow"
-        },
-        id: "2995104339",
-        labels: ["Food", "Shopping"],
-        order: 1,
-        priority: 1,
-        projectId: "3",
-        sectionId: "7025",
-        parentId: "2995104589",
-        url: "https://todoist.com/showTask?id=2995104339"
+    id: "2995104339",
+    labels: ["Food", "Shopping"],
+    order: 1,
+    priority: 1,
+    projectId: "2",
+    sectionId: "7025",
+    parentId: "2995104589",
+    url: "https://todoist.com/showTask?id=2995104339",
+  },
+  {
+    creatorId: "2671355",
+    createdAt: "2019-12-11T22:36:50.000000Z",
+    assigneeId: "2671362",
+    assignerId: "2671355",
+    commentCount: 10,
+    isCompleted: false,
+    content: "Buy 3",
+    description: "",
+    due: {
+      date: "2023-04-05",
+      isRecurring: false,
+      datetime: "2016-09-01T12:00:00.000000Z",
+      string: "tomorrow at 12",
+      timezone: "Europe/Moscow",
     },
-    {
-        creatorId: "2671355",
-        createdAt: "2019-12-11T22:36:50.000000Z",
-        assigneeId: "2671362",
-        assignerId: "2671355",
-        commentCount: 10,
-        isCompleted: false,
-        content: "Buy 5",
-        description: "",
-        due: {
-            date: "2016-09-01",
-            isRecurring: false,
-            datetime: "2016-09-01T12:00:00.000000Z",
-            string: "tomorrow at 12",
-            timezone: "Europe/Moscow"
-        },
-        id: "2995104339",
-        labels: ["Food", "Shopping"],
-        order: 1,
-        priority: 1,
-        projectId: "3",
-        sectionId: "7025",
-        parentId: "2995104589",
-        url: "https://todoist.com/showTask?id=2995104339"
+    id: "2995104339",
+    labels: ["Food", "Shopping"],
+    order: 1,
+    priority: 1,
+    projectId: "3",
+    sectionId: "7025",
+    parentId: "2995104589",
+    url: "https://todoist.com/showTask?id=2995104339",
+  },
+  {
+    creatorId: "2671355",
+    createdAt: "2019-12-11T22:36:50.000000Z",
+    assigneeId: "2671362",
+    assignerId: "2671355",
+    commentCount: 10,
+    isCompleted: false,
+    content: "Buy 5",
+    description: "",
+    due: {
+      date: "2016-09-01",
+      isRecurring: false,
+      datetime: "2016-09-01T12:00:00.000000Z",
+      string: "tomorrow at 12",
+      timezone: "Europe/Moscow",
     },
-]
-export const TasksReducer = (state: TaskType[] = InitialState, action: ActionsType): TaskType[] => {
-    switch (action.type) {
-        case 'GET-TASKS':return action.payload.tasks
-        case 'ADD-TASK':return [action.payload.newTask, ...state]
+    id: "2995104339",
+    labels: ["Food", "Shopping"],
+    order: 1,
+    priority: 1,
+    projectId: "3",
+    sectionId: "7025",
+    parentId: "2995104589",
+    url: "https://todoist.com/showTask?id=2995104339",
+  },
+];
+export const TasksReducer = (state: TaskType[] = InitialState, action: ActionsType) => {
+  switch (action.type) {
+    case "GET-TASKS":
+      return action.payload.tasks;
+    case "ADD-TASK":
+      return [action.payload.newTask, ...state];
 
-        default: return state
-    }
+    default:
+      return state;
+  }
 };
-type ActionsType = ReturnType<typeof getTasksAC> | ReturnType<typeof addTaskAC>
+type ActionsType = ReturnType<typeof getTasksAC> | ReturnType<typeof addTaskAC>;
 
-const getTasksAC = (tasks:TaskType[]) => {
-    return {
-        type: 'GET-TASKS',
-        payload: {tasks}
-    } as const
-}
+const getTasksAC = (tasks: TaskType[]) => {
+  return {
+    type: "GET-TASKS",
+    payload: { tasks },
+  } as const;
+};
 
-const addTaskAC = (newTask:TaskType) => {
-    return {
-        type: 'ADD-TASK',
-        payload: {newTask}
-    } as const
-}
+const addTaskAC = (newTask: TaskType) => {
+  return {
+    type: "ADD-TASK",
+    payload: { newTask },
+  } as const;
+};
 
 export const getTasksTC = () => async (dispatch: Dispatch) => {
-    try {
-        let tasks = await api.getTasks()
-        dispatch(getTasksAC(tasks))
-    } catch (e) {
+  try {
+    let tasks = await apiTodoist.getTasks();
+    dispatch(getTasksAC(tasks));
+  } catch (e) {}
+};
 
-    }
-}
-
-export const addTaskTC = (projectId:string, content: string) => async (dispatch: Dispatch) => {
-    try {
-        let newTask = await api.addTask({projectId, content})
-        dispatch(addTaskAC(newTask))
-    } catch (e) {
-        console.log(e)
-    }
-}
+export const addTaskTC = (projectId: string, content: string) => async (dispatch: Dispatch) => {
+  try {
+    let newTask = await apiTodoist.addTask({ projectId, content });
+    dispatch(addTaskAC(newTask));
+  } catch (e) {
+    console.log(e);
+  }
+};

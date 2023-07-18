@@ -1,27 +1,27 @@
 .listWrapper {
-    width: 800px;
-    padding-top: 30px;
+  width: 800px;
+  padding-top: 30px;
 }
 .item {
-    display: flex;
-    border-bottom: 1px solid grey;
-    padding: 5px;
-    height: 2.5rem;
-    line-height:2.5rem;
+  display: flex;
+  border-bottom: 1px solid grey;
+  padding: 5px;
+  height: 2.5rem;
+  line-height: 2.5rem;
 }
 .roundCheckbox {
-    width: 1.3em;
-    height: 1.3em;
-    background-color: white;
-    border-radius: 50%;
-    vertical-align: middle;
-    border: 1px solid #ddd;
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
-    cursor: pointer;
+  width: 1.3em;
+  height: 1.3em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .roundCheckbox:checked {
-    background-color: gray;
+  background-color: gray;
 }

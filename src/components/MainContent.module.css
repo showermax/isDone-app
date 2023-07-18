@@ -1,29 +1,28 @@
-
 .wrapper {
-    display: flex;
-    height: calc(100vh - 50px);
+  display: flex;
+  height: calc(100vh - 50px);
 }
 
 .navbar {
-    min-width: 300px;
-    width: 5vw;
-    background: #1b1c21;
-    display:flex;
-    flex-direction: column;
-    gap: 100px;
+  min-width: 300px;
+  width: 5vw;
+  background: #1b1c21;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
 }
 
 .container {
-    text-align: center;
+  text-align: center;
 }
 .list {
-    display: flex;
-    justify-content: space-around;
-    margin:0 auto;
-    background:#26272e;
-    overflow: auto;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  background: #26272e;
+  overflow: auto;
 }
 
 .burger {
-    position: absolute;
+  position: absolute;
 }

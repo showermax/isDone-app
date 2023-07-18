@@ -2,7 +2,7 @@
   background: #26272e;
   display: flex;
   flex-direction: column;
-  color:white;
+  color: white;
 }
 
 .App-logo {
@@ -10,12 +10,9 @@
   pointer-events: none;
 }
 
-
 .menuIco svg {
-  wdith:30px;
+  wdith: 30px;
 }
-
-
 
 .App-header {
   padding: 2px 20px;
