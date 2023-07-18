@@ -26,11 +26,11 @@ export const Navbar = (props: PropsType) => {
       </div>
       <div className={style.navbarGroup}>
         {lists
-          .filter((el) => el.name !== "Inbox")
+          .filter((el) => el.title !== "Inbox")
           .map((el) => (
-            <NavLink to={el.name}>
+            <NavLink key={el.id} to={el.title}>
               <div className={style.navbarItem} onClick={() => showForToday("")}>
-                {el.name}
+                {el.title}
               </div>
             </NavLink>
           ))}

@@ -1,5 +1,4 @@
 import { AppDispatch } from "../redux/store";
-import { apiTodoist } from "../api/apiTodoist";
 import { getTasksTC } from "./TasksReducer";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { listApi } from "../api/apiSamurais";
