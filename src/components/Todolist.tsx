@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import style from "./Todolist.module.css";
 
-import { getTasksTC } from "../reducers/TasksReducer";
+import { addTaskTC, getTasksTC } from "../reducers/TasksReducer";
 import { RootState } from "../redux/store";
 
 type PropsType = {
@@ -24,7 +24,6 @@ export const Todolist = (props: PropsType) => {
 
   return (
     <div className={style.listWrapper}>
-      <button onClick={() => {}}>add new task</button>
       {tasks.map((el) => (
         <div key={el.id} className={style.item}>
           <div>
@@ -33,6 +32,17 @@ export const Todolist = (props: PropsType) => {
           {el.title}
         </div>
       ))}
+      <div
+        className={`${style.item} ${style.addItem}`}
+        onClick={() => {
+          dispatch(addTaskTC(id, "hello"));
+        }}
+      >
+        <div className={style.addIco}>+</div>{" "}
+        <div>
+          <i> Add new task</i>
+        </div>
+      </div>
     </div>
   );
 };

@@ -8,6 +8,8 @@
   padding: 5px;
   height: 2.5rem;
   line-height: 2.5rem;
+  gap: 10px;
+  align-items: center;
 }
 .roundCheckbox {
   width: 1.3em;
@@ -24,4 +26,16 @@
 
 .roundCheckbox:checked {
   background-color: gray;
+}
+
+.addItem {
+  color: darkgrey;
+}
+.addIco {
+  font-size: 2rem;
+}
+.addItem:hover {
+  color: #fff;
+  transition: 0.3s ease all;
+  cursor: pointer;
 }

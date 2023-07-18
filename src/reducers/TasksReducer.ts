@@ -29,6 +29,9 @@ const slice = createSlice({
     setTasks(state, action: PayloadAction<{ tasks: TaskType[]; todoListId: string }>) {
       state[action.payload.todoListId] = action.payload.tasks;
     },
+    addTask(state, action: PayloadAction<{ todoListId: string; newTask: TaskType }>) {
+      state[action.payload.todoListId].push(action.payload.newTask);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(setLists, (state, action) => {
@@ -37,12 +40,20 @@ const slice = createSlice({
   },
 });
 export const TasksReducer = slice.reducer;
-export const { setTasks } = slice.actions;
+export const { setTasks, addTask } = slice.actions;
 
 export const getTasksTC = (todoListId: string) => async (dispatch: Dispatch) => {
   try {
     let tasks = await todoListsApi.getTasks(todoListId);
     dispatch(setTasks({ tasks: tasks.data.items, todoListId }));
+  } catch (e) {}
+};
+
+export const addTaskTC = (todoListId: string, title: string) => async (dispatch: Dispatch) => {
+  debugger;
+  try {
+    let task = await todoListsApi.addTask(todoListId, title);
+    dispatch(addTask({ todoListId, newTask: task.data.data.item }));
   } catch (e) {}
 };
 // export const TasksReducer = (state: TasksType = initialState, action: ActionsType) => {
