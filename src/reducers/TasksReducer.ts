@@ -49,7 +49,7 @@ export const getTasksTC = (todoListId: string) => async (dispatch: Dispatch) => 
   } catch (e) {}
 };
 
-export const addTaskTC = (todoListId: string, title: string) => async (dispatch: Dispatch) => {
+export const addTaskTC = (todoListId: string, title: string, order: number) => async (dispatch: Dispatch) => {
   debugger;
   try {
     let task = await todoListsApi.addTask(todoListId, title);
