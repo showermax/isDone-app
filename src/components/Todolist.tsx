@@ -12,19 +12,15 @@ type PropsType = {
 export const Todolist = (props: PropsType) => {
   const { id, filter } = props;
   let tasks = useAppSelector((state: RootState) => state.tasks[id]);
-  console.log(tasks);
+
   let dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getTasksTC(id));
   }, [dispatch, id]);
 
-  // const date = new Date();
-  //     const today= date.toLocaleDateString('en-US').split('/').map(el=>el.length<2 ? '0'+el:el)
-  // today.shift('today[2]')
-  // [today[0], today[2]]=[today[2],today[0]]
-
-  // let tasksToRender = tasks.filter((el) => el.projectId === id);
-  // if (filter) tasksToRender = tasks.filter(el=>el.due.date===today)
+  const date = new Date();
+  const today = date.toISOString().slice(0, 10);
+  if (filter) tasks = tasks.filter((el) => el.addedDate.toString().slice(0, 10) === today);
 
   return (
     <div className={style.listWrapper}>
