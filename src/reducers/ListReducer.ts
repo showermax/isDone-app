@@ -1,7 +1,6 @@
 import { AppDispatch } from "../redux/store";
-import { getTasksTC } from "./TasksReducer";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { listApi } from "../api/apiSamurais";
+import { todoListsApi } from "../api/apiSamurais";
 
 export type ListType = {
   id: string;
@@ -27,9 +26,9 @@ export const { setLists } = slice.actions;
 
 export const getListsTC = () => async (dispatch: AppDispatch) => {
   try {
-    let lists = await listApi.getLists();
+    let lists = await todoListsApi.getLists();
     dispatch(setLists({ lists: lists.data }));
-    dispatch(getTasksTC());
+    // dispatch(getTasksTC());
   } catch (e) {}
 };
 

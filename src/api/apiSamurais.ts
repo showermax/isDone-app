@@ -10,7 +10,7 @@ export const todoListsApi = {
   getLists() {
     return instance.get<ListType[]>("todo-lists");
   },
-  // getTasks(todolistId: number) {
-  //   return instance.get<>(`/todo-lists/${todolistId}/tasks`);
-  // },
+  getTasks(todolistId: string) {
+    return instance.get<any>(`/todo-lists/${todolistId}/tasks`);
+  },
 };
