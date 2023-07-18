@@ -20,6 +20,16 @@ export type TaskType = {
   order: number;
   addedDate: Date;
 };
+export type ModelType = {
+  description?: string;
+  title?: string;
+  completed?: boolean;
+  status?: number;
+  priority?: number;
+  startDate?: Date;
+  deadline?: Date;
+};
+
 let initialState: TasksType = {};
 
 const slice = createSlice({
@@ -32,6 +42,14 @@ const slice = createSlice({
     addTask(state, action: PayloadAction<{ todoListId: string; newTask: TaskType }>) {
       state[action.payload.todoListId].push(action.payload.newTask);
     },
+    editTask(state, action: PayloadAction<{ todoListId: string; taskId: string; task: TaskType }>) {
+      return {
+        ...state,
+        [action.payload.task.todoListId]: state[action.payload.task.todoListId].map((el) =>
+          el.id === action.payload.task.id ? action.payload.task : el,
+        ),
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(setLists, (state, action) => {
@@ -40,7 +58,7 @@ const slice = createSlice({
   },
 });
 export const TasksReducer = slice.reducer;
-export const { setTasks, addTask } = slice.actions;
+export const { setTasks, addTask, editTask } = slice.actions;
 
 export const getTasksTC = (todoListId: string) => async (dispatch: Dispatch) => {
   try {
@@ -49,13 +67,19 @@ export const getTasksTC = (todoListId: string) => async (dispatch: Dispatch) => 
   } catch (e) {}
 };
 
-export const addTaskTC = (todoListId: string, title: string, order: number) => async (dispatch: Dispatch) => {
-  debugger;
+export const addTaskTC = (todoListId: string, title: string) => async (dispatch: Dispatch) => {
   try {
     let task = await todoListsApi.addTask(todoListId, title);
     dispatch(addTask({ todoListId, newTask: task.data.data.item }));
   } catch (e) {}
 };
+export const editTaskTC =
+  (todoListId: string, taskId: string, changedProperties: ModelType) => async (dispatch: Dispatch) => {
+    try {
+      let result = await todoListsApi.editTask(todoListId, taskId, changedProperties);
+      dispatch(editTask({ todoListId, taskId, task: result.data.data.item }));
+    } catch (e) {}
+  };
 // export const TasksReducer = (state: TasksType = initialState, action: ActionsType) => {
 //   switch (action.type) {
 //     case "GET-TASKS":

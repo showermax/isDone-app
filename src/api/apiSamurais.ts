@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { ListType } from "../reducers/ListReducer";
-import { TaskType } from "../reducers/TasksReducer";
+import { ModelType, TaskType } from "../reducers/TasksReducer";
 
 const instance = axios.create({
   baseURL: "https://social-network.samuraijs.com/api/1.1/",
@@ -24,5 +24,8 @@ export const todoListsApi = {
       AxiosResponse<PostResponceType<{ item: TaskType }>>,
       { title: string }
     >(`/todo-lists/${todolistId}/tasks`, { title });
+  },
+  editTask(todolistId: string, taskId: string, changedProperties: ModelType) {
+    return instance.put(`/todo-lists/${todolistId}/tasks/${taskId}`, changedProperties);
   },
 };

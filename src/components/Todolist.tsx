@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import style from "./Todolist.module.css";
 
-import { addTaskTC, getTasksTC } from "../reducers/TasksReducer";
+import { addTaskTC, editTaskTC, getTasksTC } from "../reducers/TasksReducer";
 import { RootState } from "../redux/store";
 
 type PropsType = {
@@ -28,7 +28,10 @@ export const Todolist = (props: PropsType) => {
   const today = date.toISOString().slice(0, 10);
   if (filter) taskSorted = taskSorted.filter((el) => el.startDate && el.startDate.toString().slice(0, 10) === today);
   const addTask = () => {
-    dispatch(addTaskTC(id, "newtask", 1));
+    dispatch(addTaskTC(id, "newtask"));
+  };
+  const editTaskHandler = (taskId: string) => {
+    dispatch(editTaskTC(id, taskId, { title: "newtask", deadline: new Date() }));
   };
   return (
     <div className={style.listWrapper}>
@@ -37,7 +40,7 @@ export const Todolist = (props: PropsType) => {
           <div>
             <input type="checkbox" className={style.roundCheckbox} />
           </div>
-          {el.title}
+          <div onClick={() => editTaskHandler(el.id)}> {el.title}</div>
         </div>
       ))}
       <div className={`${style.item} ${style.addItem}`} onClick={addTask}>
