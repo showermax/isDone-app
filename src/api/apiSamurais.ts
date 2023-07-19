@@ -18,12 +18,12 @@ export const todoListsApi = {
   getTasks(todolistId: string) {
     return instance.get(`todo-lists/${todolistId}/tasks`);
   },
-  addTask(todolistId: string, title: string) {
+  addTask(todolistId: string, task: ModelType) {
     return instance.post<
       PostResponceType<{ item: TaskType }>,
-      AxiosResponse<PostResponceType<{ item: TaskType }>>,
-      { title: string }
-    >(`/todo-lists/${todolistId}/tasks`, { title });
+      AxiosResponse<PostResponceType<{ item: TaskType }>>
+      // { task: ModelType }
+    >(`/todo-lists/${todolistId}/tasks`, { title: task.title, description: task.description, deadline: task.deadline, priority: task.priority });
   },
   editTask(todolistId: string, taskId: string, changedProperties: ModelType) {
     return instance.put(`todo-lists/${todolistId}/tasks/${taskId}`, changedProperties);

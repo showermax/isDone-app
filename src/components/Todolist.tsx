@@ -31,8 +31,8 @@ export const Todolist = (props: PropsType) => {
   const today = date.toISOString().slice(0, 10);
   if (filter) taskSorted = taskSorted.filter((el) => el.deadline && el.deadline.toString().slice(0, 10) === today);
   const addTask = (newTask: ModelType & { todoLisId: string }) => {
-    dispatch(addTaskTC(id, 'newTask.title'));
-    setShowAddForm(true);
+    dispatch(addTaskTC(id, newTask));
+    setShowAddForm(false);
   };
 
   return (
@@ -40,7 +40,7 @@ export const Todolist = (props: PropsType) => {
       {taskSorted.map((el) => (
         <Task task={el} key={el.id} />
       ))}
-      {!showAddForm ? <div className={`${style.item} ${style.addItem}`}>
+      {!showAddForm ? <div className={`${style.item} ${style.addItem}`} onClick={()=>setShowAddForm(true)}>
           <div className={style.addItemWrapper}>
             <div className={style.addIco}>+</div>
             <div><i> Add new task </i></div>
