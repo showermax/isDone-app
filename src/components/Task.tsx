@@ -28,9 +28,9 @@ export const Task: FC<PropsType> = ({ task }) => {
         <div> {task.title}</div>
       </div>
       <div className={style.item_right}>
-        <img className={style.item_right_ico} src={editIco} />
-        <img className={style.item_right_ico} src={calendarIco} onClick={deadlineTodayHandler}/>
-        <img className={style.item_right_ico} src={deleteIco} onClick={deleteTaskHandler}/>
+        <img className={style.item_right_ico} src={editIco} alt={'edit task'}/>
+        <img className={style.item_right_ico} src={calendarIco} alt={'set deadline'} onClick={deadlineTodayHandler}/>
+        <img className={style.item_right_ico} src={deleteIco} alt={'delete task'} onClick={deleteTaskHandler}/>
       </div>
     </div>
   );
