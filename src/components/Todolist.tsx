@@ -32,7 +32,7 @@ export const Todolist = (props: PropsType) => {
   if (filter) taskSorted = taskSorted.filter((el) => el.deadline && el.deadline.toString().slice(0, 10) === today);
   const addTask = () => {
     dispatch(addTaskTC(id, "newtask"));
-    setShowAddForm(true)
+    setShowAddForm(true);
   };
 
   return (
@@ -47,8 +47,8 @@ export const Todolist = (props: PropsType) => {
           </div>
         </div>
         :
-        <div className={style.addForm}>
-<AddForm />
+        <div>
+          <AddForm todoLisId={id} />
         </div>
       }
 

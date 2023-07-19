@@ -1,7 +1,42 @@
-textarea {
-    resize: none;
-    outline:none;
-    background-color: #1b1c21;
-    width:100%;
-    font-size: large;
+.addForm
+{
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+ .addForm textarea {
+     color: #fff;
+     resize: none;
+     outline: none;
+     background-color: #26272e;
+     width: 90%;
+     font-size: large;
+     margin: 10px;
+     border: none
+}
+
+.addForm_footer {
+    display: flex;
+    gap: 20px;
+    align-items: end;
+    margin-bottom: 10px;
+    font-weight: 300;
+    font-size: 14px;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+.addForm_footer_item {
+    display: flex;
+    flex-direction: column;
+    gap:1px;
+}
+.customButton {
+    color: #fff;
+    padding: 5px;
+    height: 30px;
+    width: 100px;
+    background: transparent;
+    border-radius: 5px;
+    border: 1px solid grey;
 }
