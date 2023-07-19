@@ -18,12 +18,8 @@
 
 .addForm_footer {
     display: flex;
-    gap: 20px;
-    align-items: end;
-    margin-bottom: 10px;
-    font-weight: 300;
-    font-size: 14px;
-    padding: 10px;
+    justify-content: space-between;
+
     flex-wrap: wrap;
 }
 .addForm_footer_item {
@@ -39,4 +35,33 @@
     background: transparent;
     border-radius: 5px;
     border: 1px solid grey;
+}
+.addForm_footer_left {
+    display: flex;
+    gap: 20px;
+    align-items: end;
+    margin-bottom: 10px;
+    font-weight: 300;
+    font-size: 14px;
+    padding: 10px;
+}
+.addForm_footer_right {
+    display: flex;
+    gap: 20px;
+    align-items: end;
+    margin-bottom: 10px;
+    font-weight: 300;
+    font-size: 14px;
+    padding: 10px;
+}
+.saveCancelButton {
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+}
+.saveCancelButton_backGround{
+    background-color: #ff9000;
+}
+.customButton:hover{
+cursor: pointer;
 }
