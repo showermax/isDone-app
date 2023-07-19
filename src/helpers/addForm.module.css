@@ -27,6 +27,7 @@
     flex-direction: column;
     gap:1px;
 }
+
 .customButton {
     color: #fff;
     padding: 5px;
@@ -36,6 +37,10 @@
     border-radius: 5px;
     border: 1px solid grey;
 }
+.select {
+    background-color: #26272e;
+}
+
 .addForm_footer_left {
     display: flex;
     gap: 20px;

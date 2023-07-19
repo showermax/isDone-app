@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import style from "./Todolist.module.css";
 
-import { addTaskTC, editTaskTC, getTasksTC } from "../reducers/TasksReducer";
+import { addTaskTC, getTasksTC, ModelType } from "../reducers/TasksReducer";
 import { RootState } from "../redux/store";
 import { Task } from "./Task";
 import { AddForm } from "../helpers/addForm";
@@ -30,8 +30,8 @@ export const Todolist = (props: PropsType) => {
   const date = new Date();
   const today = date.toISOString().slice(0, 10);
   if (filter) taskSorted = taskSorted.filter((el) => el.deadline && el.deadline.toString().slice(0, 10) === today);
-  const addTask = () => {
-    dispatch(addTaskTC(id, "newtask"));
+  const addTask = (newTask: ModelType & { todoLisId: string }) => {
+    dispatch(addTaskTC(id, newTask.title));
     setShowAddForm(true);
   };
 
@@ -40,7 +40,7 @@ export const Todolist = (props: PropsType) => {
       {taskSorted.map((el) => (
         <Task task={el} key={el.id} />
       ))}
-      {!showAddForm ? <div className={`${style.item} ${style.addItem}`} onClick={addTask}>
+      {!showAddForm ? <div className={`${style.item} ${style.addItem}`}>
           <div className={style.addItemWrapper}>
             <div className={style.addIco}>+</div>
             <div><i> Add new task </i></div>
@@ -60,7 +60,7 @@ export const Todolist = (props: PropsType) => {
             todoListId: '',
             order: 0,
             addedDate: null,
-          }} />
+          }} showMe={setShowAddForm} saveTask={addTask} />
         </div>
       }
 
