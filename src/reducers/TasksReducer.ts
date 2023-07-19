@@ -13,12 +13,12 @@ export type TaskType = {
   completed: boolean;
   status: number;
   priority: number;
-  startDate: Date;
-  deadline: Date;
+  startDate: Date | null;
+  deadline: Date | null;
   id: string;
   todoListId: string;
   order: number;
-  addedDate: Date;
+  addedDate: Date | null;
 };
 export type ModelType = {
   description?: string;
@@ -26,8 +26,8 @@ export type ModelType = {
   completed?: boolean;
   status?: number;
   priority?: number;
-  startDate?: Date;
-  deadline?: Date;
+  startDate?: Date | null;
+  deadline?: Date | null;
 };
 
 let initialState: TasksType = {};

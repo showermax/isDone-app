@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FC, useState } from "react";
 import style from "./addForm.module.css";
 import { useAppSelector } from "../hooks/hooks";
+import { log } from "util";
 
 type OptionsType = {
   id?: string,
@@ -16,9 +17,10 @@ export const Select:FC<{todoLisId: string, whatToSelect: string, onChangeProp: (
     onChangeProp(e.currentTarget.value)
     setCurrentValue(e.currentTarget.value)
   }
+  console.log(currentValue, value);
   return (
-    <select className={style.customButton} value={currentValue} onChange={selectHandler}>
-      {options.map(el=><option value={ el.id ? el.id : el.title}>{el.title}</option>)}
+    <select className={style.customButton} onChange={selectHandler}>
+      {options.map(el=><option value={ el.id ? el.id : el.title} selected={el.id===todoLisId}>{el.title}</option>)}
     </select>
   );
 };

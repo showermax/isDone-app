@@ -48,7 +48,19 @@ export const Todolist = (props: PropsType) => {
         </div>
         :
         <div>
-          <AddForm todoLisId={id} />
+          <AddForm todoLisId={id} task={{
+            description: '',
+            title: '',
+            completed: false,
+            status: 0,
+            priority: 1,
+            startDate: null,
+            deadline: null,
+            id: '',
+            todoListId: '',
+            order: 0,
+            addedDate: null,
+          }} />
         </div>
       }
 
