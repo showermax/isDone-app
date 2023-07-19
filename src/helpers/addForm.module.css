@@ -1,0 +1,7 @@
+textarea {
+    resize: none;
+    outline:none;
+    background-color: #1b1c21;
+    width:100%;
+    font-size: large;
+}
