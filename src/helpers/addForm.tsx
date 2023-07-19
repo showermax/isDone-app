@@ -7,13 +7,14 @@ import { Select } from "./Select";
 import { ModelType, TaskType } from "../reducers/TasksReducer";
 
 export const AddForm:FC<{todoLisId:string, task: TaskType}> = ({todoLisId, task}) => {
-  const [newTask, setNewTask] = useState<ModelType>({
+  const [newTask, setNewTask] = useState<ModelType & {todoLisId:string}>({
     description: task.description,
     title: task.title,
     status: task.status,
     priority: task.priority,
     startDate: task.startDate,
-    deadline:task.deadline
+    deadline:task.deadline,
+    todoLisId
   })
   const [startDate, setStartDate] = useState<Date | null>(new Date() );
   const [title, setTitle] = useState('' );
@@ -25,8 +26,12 @@ export const AddForm:FC<{todoLisId:string, task: TaskType}> = ({todoLisId, task}
     setNewTask({...newTask, description: e.currentTarget.value})
   }
   const setProjectHandler = (s:string) => {
-    console.log(s);
+    setNewTask({...newTask, todoLisId:s})
   }
+  const setDateHandler = (date:Date) =>{
+    setNewTask({...newTask, deadline:date})
+  }
+
   return (
     <div className={style.addForm}>
       <textarea rows={2} autoFocus={true} placeholder={'Title'} onChange={setTitleHandler} value={title}></textarea>
@@ -40,7 +45,7 @@ export const AddForm:FC<{todoLisId:string, task: TaskType}> = ({todoLisId, task}
           <div className={style.addForm_footer_item}>
             <i>Set due date</i>
             <DatePicker selected={startDate} filterDate={(date) => new Date() <= date}
-                        onChange={(date) => setStartDate(date)} customInput={<CustomInput />} />
+                        onChange={setDateHandler} customInput={<CustomInput />} />
           </div>
           <div className={style.addForm_footer_item}>
             <i>Set Priority</i>
