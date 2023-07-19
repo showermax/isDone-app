@@ -6,10 +6,29 @@
   display: flex;
   border-bottom: 1px solid grey;
   padding: 5px;
-  height: 2.5rem;
-  line-height: 2.5rem;
+  justify-content: space-between;
+  /*height: 2.5rem;*/
+  /*line-height: 2.5rem;*/
+  /*gap: 10px;*/
+  /*align-items: center;*/
+}
+.item_left {
+  display:flex;
+  gap:10px;
+}
+.item_right {
+  display: flex;
   gap: 10px;
-  align-items: center;
+  padding: 2px;
+  filter: invert(99%) sepia(1%) saturate(5%) hue-rotate(22deg) brightness(102%) contrast(103%);
+}
+.item_right_ico:hover {
+  cursor: pointer;
+  filter: invert(32%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%);
+}
+.item_right img {
+  width:24px;
+  height:24px;
 }
 .roundCheckbox {
   width: 1.3em;
@@ -23,13 +42,16 @@
   outline: none;
   cursor: pointer;
 }
-
 .roundCheckbox:checked {
   background-color: gray;
 }
-
 .addItem {
   color: darkgrey;
+}
+.addItemWrapper{
+  display: flex;
+  align-items: center;
+  gap:10px;
 }
 .addIco {
   font-size: 2rem;

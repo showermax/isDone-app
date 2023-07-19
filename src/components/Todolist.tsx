@@ -27,7 +27,7 @@ export const Todolist = (props: PropsType) => {
 
   const date = new Date();
   const today = date.toISOString().slice(0, 10);
-  if (filter) taskSorted = taskSorted.filter((el) => el.startDate && el.startDate.toString().slice(0, 10) === today);
+  if (filter) taskSorted = taskSorted.filter((el) => el.deadline && el.deadline.toString().slice(0, 10) === today);
   const addTask = () => {
     dispatch(addTaskTC(id, "newtask"));
   };
@@ -38,9 +38,9 @@ export const Todolist = (props: PropsType) => {
         <Task task={el} />
       ))}
       <div className={`${style.item} ${style.addItem}`} onClick={addTask}>
-        <div className={style.addIco}>+</div>{" "}
-        <div>
-          <i> Add new task</i>
+        <div className={style.addItemWrapper}>
+          <div className={style.addIco}>+</div>
+          <div><i> Add new task </i></div>
         </div>
       </div>
     </div>
