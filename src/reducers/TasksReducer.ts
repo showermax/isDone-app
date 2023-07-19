@@ -50,6 +50,10 @@ const slice = createSlice({
         ),
       };
     },
+    deleteTask (state,action: PayloadAction<{todoListId: string, taskId: string}>) {
+      let index = state[action.payload.todoListId].findIndex((t) => t.id === action.payload.taskId)
+      if (index!==-1) state[action.payload.todoListId].splice(index, 1)
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(setLists, (state, action) => {
@@ -58,7 +62,7 @@ const slice = createSlice({
   },
 });
 export const TasksReducer = slice.reducer;
-export const { setTasks, addTask, editTask } = slice.actions;
+export const { setTasks, addTask, editTask, deleteTask } = slice.actions;
 
 export const getTasksTC = (todoListId: string) => async (dispatch: Dispatch) => {
   try {
@@ -80,6 +84,15 @@ export const editTaskTC =
       dispatch(editTask({ todoListId, taskId, task: result.data.data.item }));
     } catch (e) {}
   };
+
+export const deleteTaskTC = (todoListId: string, taskId: string) => async (dispatch: Dispatch) => {
+  try{
+    await todoListsApi.deleteTask(todoListId,taskId)
+    dispatch(deleteTask({todoListId,taskId}))
+  } catch (e) {
+
+  }
+}
 // export const TasksReducer = (state: TasksType = initialState, action: ActionsType) => {
 //   switch (action.type) {
 //     case "GET-TASKS":

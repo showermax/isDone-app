@@ -16,7 +16,7 @@ export const todoListsApi = {
     return instance.get<ListType[]>("todo-lists");
   },
   getTasks(todolistId: string) {
-    return instance.get(`/todo-lists/${todolistId}/tasks`);
+    return instance.get(`todo-lists/${todolistId}/tasks`);
   },
   addTask(todolistId: string, title: string) {
     return instance.post<
@@ -26,6 +26,9 @@ export const todoListsApi = {
     >(`/todo-lists/${todolistId}/tasks`, { title });
   },
   editTask(todolistId: string, taskId: string, changedProperties: ModelType) {
-    return instance.put(`/todo-lists/${todolistId}/tasks/${taskId}`, changedProperties);
+    return instance.put(`todo-lists/${todolistId}/tasks/${taskId}`, changedProperties);
   },
+  deleteTask(todolistId: string, taskId: string) {
+    return instance.delete(`todo-lists/${todolistId}/tasks/${taskId}`)
+  }
 };
