@@ -8,6 +8,13 @@ import { useAppDispatch } from "../hooks/hooks";
 import { AddForm } from "../helpers/addForm";
 import { TaskDetails } from "../helpers/TaskDetails";
 
+export const Priority = {
+  Low: 1,
+  Middle: 2,
+  High: 3,
+  Urgently: 4,
+  Later: 5
+} as const;
 
 type PropsType = {
   task: TaskType;
@@ -59,7 +66,7 @@ export const Task: FC<PropsType> = ({ task }) => {
           <AddForm todoLisId={task.todoListId} task={task} showMe={setShowAddForm} saveTask={editTask} hide={true}/>
         </>
       }
-      {showDetails && <TaskDetails deadline={task.deadline} description={task.description} />}
+      {showDetails && <TaskDetails task={task} />}
     </>
   );
 };

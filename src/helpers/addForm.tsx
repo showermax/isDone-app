@@ -5,15 +5,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { CustomInput } from "./DatePicker2";
 import { Select } from "./Select";
 import { ModelType, TaskType } from "../reducers/TasksReducer";
+import { Priority } from "../components/Task";
 
 
-const Priority = {
-  Low: 1,
-  Middle: 2,
-  High: 3,
-  Urgently: 4,
-  Later: 5
-} as const;
+
 export type PriorityType = "Low" | "Middle" | "High" | "Urgently" | "Later"
 export const AddForm: FC<{ todoLisId: string,
   task: TaskType,
