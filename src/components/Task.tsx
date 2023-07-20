@@ -44,7 +44,7 @@ export const Task: FC<PropsType> = ({ task }) => {
       </div>
         :
         <>
-          <AddForm todoLisId={task.todoListId} task={task} showMe={setShowAddForm} saveTask={editTask}/>
+          <AddForm todoLisId={task.todoListId} task={task} showMe={setShowAddForm} saveTask={editTask} hide={true}/>
         </>
       }
     </>

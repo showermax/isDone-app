@@ -15,7 +15,11 @@ const Priority = {
   Later: 5
 } as const;
 export type PriorityType = "Low" | "Middle" | "High" | "Urgently" | "Later"
-export const AddForm: FC<{ todoLisId: string, task: TaskType, showMe: (f: boolean)=>void, saveTask: (newTask:ModelType & { todoLisId: string }) =>void }> = ({ todoLisId, task, showMe, saveTask }) => {
+export const AddForm: FC<{ todoLisId: string,
+  task: TaskType,
+  showMe: (f: boolean)=>void,
+  saveTask: (newTask:ModelType & { todoLisId: string }) =>void,
+  hide?: boolean}> = ({ todoLisId, task, showMe, saveTask, hide }) => {
 
   const [newTask, setNewTask] = useState<ModelType & { todoLisId: string }>({
     description: task.description,
@@ -60,10 +64,10 @@ export const AddForm: FC<{ todoLisId: string, task: TaskType, showMe: (f: boolea
       <textarea rows={5} placeholder={"Description"} onChange={setDescriptionHandler} value={newTask.description}></textarea>
       <div className={style.addForm_footer}>
         <div className={style.addForm_footer_left}>
-          <div className={style.addForm_footer_item}>
+          { !hide && <div className={style.addForm_footer_item}>
             <i>Select a project</i>
-            <Select todoLisId={todoLisId} whatToSelect={"projects"} onChangeProp1={setProjectHandler} />
-          </div>
+            <Select todoLisId={todoLisId} whatToSelect={"projects"} onChangeProp1={setProjectHandler}/>
+          </div> }
           <div className={style.addForm_footer_item}>
             <i>Set due date</i>
             <DatePicker selected={newTask.deadline ? newTask.deadline : null}
