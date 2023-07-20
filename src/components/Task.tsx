@@ -6,6 +6,7 @@ import deleteIco from "../assets/icons/delete.svg";
 import { deleteTaskTC, editTaskTC, ModelType, TaskType } from "../reducers/TasksReducer";
 import { useAppDispatch } from "../hooks/hooks";
 import { AddForm } from "../helpers/addForm";
+import { TaskDetails } from "../helpers/TaskDetails";
 
 
 type PropsType = {
@@ -14,27 +15,38 @@ type PropsType = {
 export const Task: FC<PropsType> = ({ task }) => {
   let dispatch = useAppDispatch();
   const [showAddForm, setShowAddForm] = useState(false);
-  const deadlineTodayHandler = () => {
-    dispatch(editTaskTC(task.todoListId, task.id, {deadline: new Date()}));
+  const [showDetails, setShowDetails] = useState(false);
+  const deadlineTodayHandler = (e:React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation()
+    dispatch(editTaskTC(task.todoListId, task.id, {title: task.title, deadline: new Date()}));
   };
-  const deleteTaskHandler =()=>{
+  const deleteTaskHandler =(e:React.MouseEvent<HTMLElement>)=>{
+    e.stopPropagation()
     dispatch(deleteTaskTC(task.todoListId, task.id))
   }
-  const editTaskHandler = () =>{
+  const editTaskHandler = (e:React.MouseEvent<HTMLElement>) =>{
+    e.stopPropagation()
     setShowAddForm(true)
   }
   const editTask = (newTask: ModelType & { todoLisId: string }) => {
     dispatch(editTaskTC(task.todoListId, task.id, {title: newTask.title, description: newTask.description, deadline: newTask.deadline, priority: newTask.priority}))
   }
+  const showDetailsHandler = () => {
+    setShowDetails(!showDetails)
+  }
+  const hideDetailsHandler = ()=>{
+    debugger
+    setShowDetails(false)
+  }
   return (
     <>
       { !showAddForm ?
-      <div key={task.id} className={style.item}>
+      <div key={task.id} className={style.item} onClick={showDetailsHandler}>
         <div className={style.item_left}>
           <div>
             <input type="checkbox" className={style.roundCheckbox} />
           </div>
-          <div> {task.title}</div>
+          <div style={{border:'2px'}}> {task.title}</div>
         </div>
         <div className={style.item_right}>
           <img className={style.item_right_ico} src={editIco} alt={"edit task"} onClick={editTaskHandler} />
@@ -47,9 +59,11 @@ export const Task: FC<PropsType> = ({ task }) => {
           <AddForm todoLisId={task.todoListId} task={task} showMe={setShowAddForm} saveTask={editTask} hide={true}/>
         </>
       }
+      {showDetails && <TaskDetails deadline={task.deadline} description={task.description} />}
     </>
   );
 };
+
 
 
 

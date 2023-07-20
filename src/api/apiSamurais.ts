@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { ListType } from "../reducers/ListReducer";
 import { ModelType, TaskType } from "../reducers/TasksReducer";
 
+
 const instance = axios.create({
   baseURL: "https://social-network.samuraijs.com/api/1.1/",
   withCredentials: true,
@@ -11,6 +12,12 @@ type PostResponceType<T = {}> = {
   messages: string[];
   data: T;
 };
+type AddTaskPayloadType ={
+  title:string,
+  description: string,
+  deadline: Date,
+  priority: number
+}
 export const todoListsApi = {
   getLists() {
     return instance.get<ListType[]>("todo-lists");
@@ -21,8 +28,8 @@ export const todoListsApi = {
   addTask(todolistId: string, task: ModelType) {
     return instance.post<
       PostResponceType<{ item: TaskType }>,
-      AxiosResponse<PostResponceType<{ item: TaskType }>>
-      // { task: ModelType }
+      AxiosResponse<PostResponceType<{ item: TaskType }>,
+    AddTaskPayloadType>
     >(`/todo-lists/${todolistId}/tasks`, { title: task.title, description: task.description, deadline: task.deadline, priority: task.priority });
   },
   editTask(todolistId: string, taskId: string, changedProperties: ModelType) {

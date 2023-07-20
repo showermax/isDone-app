@@ -87,51 +87,10 @@ export const editTaskTC =
 
 export const deleteTaskTC = (todoListId: string, taskId: string) => async (dispatch: Dispatch) => {
   try{
-    await todoListsApi.deleteTask(todoListId,taskId)
+    const res = await todoListsApi.deleteTask(todoListId,taskId)
+
     dispatch(deleteTask({todoListId,taskId}))
   } catch (e) {
 
   }
 }
-// export const TasksReducer = (state: TasksType = initialState, action: ActionsType) => {
-//   switch (action.type) {
-//     case "GET-TASKS":
-//       return action.payload.tasks;
-//     case "ADD-TASK":
-//       return [action.payload.newTask, ...state];
-//
-//     default:
-//       return state;
-//   }
-// };
-// type ActionsType = ReturnType<typeof getTasksAC> | ReturnType<typeof addTaskAC>;
-//
-// const getTasksAC = (tasks: TaskType[]) => {
-//   return {
-//     type: "GET-TASKS",
-//     payload: { tasks },
-//   } as const;
-// };
-//
-// const addTaskAC = (newTask: TaskType) => {
-//   return {
-//     type: "ADD-TASK",
-//     payload: { newTask },
-//   } as const;
-// };
-//
-// export const getTasksTC = () => async (dispatch: Dispatch) => {
-//   try {
-//     let tasks = await apiTodoist.getTasks();
-//     dispatch(getTasksAC(tasks));
-//   } catch (e) {}
-// };
-//
-// export const addTaskTC = (projectId: string, content: string) => async (dispatch: Dispatch) => {
-//   try {
-//     let newTask = await apiTodoist.addTask({ projectId, content });
-//     dispatch(addTaskAC(newTask));
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
