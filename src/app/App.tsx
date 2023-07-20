@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import logo from "./logo1.svg";
-import ico from "../public/menu.svg";
+import logo from "../assets/logo1.svg";
 
 import "./App.css";
-import { MainContent } from "./components/MainContent";
-import { useWindowSize } from "./hooks/useWindowSize";
+import { MainContent } from "../pages/MainContent";
+import { useWindowSize } from "../shared/hooks/useWindowSize";
 
 function App() {
   let [showNavbar, setShowNavbar] = useState([true, false]);
@@ -15,7 +14,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className={"burger"} onClick={() => setShowNavbar(showNavbar.map((el, i) => (i === k ? !el : el)))}>
-          <img src={"menu.svg"} className={"menuIco"} />
+          <img src={"menu.svg"} className={"menuIco"} alt={'Open the menu'}/>
         </div>
         <div>
           <img src={logo} className="App-logo" alt="logo" />

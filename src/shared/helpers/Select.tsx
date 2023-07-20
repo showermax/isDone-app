@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, useState } from "react";
-import style from "./addForm.module.css";
+import style from "../../features/addForm.module.css";
 import { useAppSelector } from "../hooks/hooks";
 
 type OptionsType = {

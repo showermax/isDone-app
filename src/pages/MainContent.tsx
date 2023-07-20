@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import style from "./MainContent.module.css";
-import { Todolist } from "./Todolist";
+import { Todolist } from "../entities/todolist/Todolist";
 import { Routes, Route } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks/hooks";
-import { ListsSelector } from "../reducers/Selectors";
+import { useAppDispatch, useAppSelector } from "../shared/hooks/hooks";
+import { ListsSelector } from "../app/Selectors";
 import { Navbar } from "./Navbar";
 
-import { getListsTC } from "../reducers/ListReducer";
+import { getListsTC } from "../entities/todolist/ListReducer";
 
 export const MainContent = (props: { showNavbar: boolean }) => {
   const [filter, setFilter] = useState("");
   let lists = useAppSelector(ListsSelector);
   const dispatch = useAppDispatch();
-  console.log(lists);
+
   useEffect(() => {
     dispatch(getListsTC());
   }, [dispatch]);

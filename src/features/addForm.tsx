@@ -2,10 +2,10 @@ import React, { ChangeEvent, FC, useState } from "react";
 import style from "./addForm.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { CustomInput } from "./DatePicker2";
-import { Select } from "./Select";
-import { ModelType, TaskType } from "../reducers/TasksReducer";
-import { Priority } from "../components/Task";
+import { CustomInput } from "../shared/helpers/DatePicker2";
+import { Select } from "../shared/helpers/Select";
+import { ModelType, TaskType } from "../entities/task/TasksReducer";
+import { Priority } from "../entities/task/Task";
 
 
 

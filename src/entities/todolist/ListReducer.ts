@@ -1,6 +1,6 @@
-import { AppDispatch } from "../redux/store";
+import { AppDispatch } from "../../app/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { todoListsApi } from "../api/apiSamurais";
+import { todoListsApi } from "../../shared/api/apiSamurais";
 
 export type ListType = {
   id: string;

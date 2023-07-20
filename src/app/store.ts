@@ -1,8 +1,6 @@
-import React from "react";
-import { AnyAction, applyMiddleware, combineReducers, legacy_createStore as createStore } from "redux";
-import { ListReducer } from "../reducers/ListReducer";
-import thunk, { ThunkAction, ThunkDispatch } from "redux-thunk";
-import { TasksReducer } from "../reducers/TasksReducer";
+import { combineReducers } from "redux";
+import { ListReducer } from "../entities/todolist/ListReducer";
+import { TasksReducer } from "../entities/task/TasksReducer";
 import { configureStore } from "@reduxjs/toolkit";
 //
 const Reducers = combineReducers({

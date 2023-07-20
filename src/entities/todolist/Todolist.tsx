@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../shared/hooks/hooks";
 import style from "./Todolist.module.css";
 
-import { addTaskTC, getTasksTC, ModelType } from "../reducers/TasksReducer";
-import { RootState } from "../redux/store";
-import { Task } from "./Task";
-import { AddForm } from "../helpers/addForm";
+import { addTaskTC, getTasksTC, ModelType } from "../task/TasksReducer";
+import { Task } from "../task/Task";
+import { AddForm } from "../../features/addForm";
+import { TasksSelector } from "../../app/Selectors";
 
 type PropsType = {
   id: string;
@@ -14,9 +14,9 @@ type PropsType = {
 export const Todolist = (props: PropsType) => {
   const { id, filter } = props;
 
-  let tasks = useAppSelector((state: RootState) => state.tasks[id]);
+  let tasks = useAppSelector(TasksSelector);
 
-  let taskSorted = [...tasks];
+  let taskSorted = [...tasks[id]];
 
   taskSorted.sort((a, b) => b.order - a.order);
 

@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import { ListType } from "../reducers/ListReducer";
-import { ModelType, TaskType } from "../reducers/TasksReducer";
+import { ListType } from "../../entities/todolist/ListReducer";
+import { ModelType, TaskType } from "../../entities/task/TasksReducer";
 
 
 const instance = axios.create({

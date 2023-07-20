@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { todoListsApi } from "../api/apiSamurais";
-import { setLists } from "./ListReducer";
+import { todoListsApi } from "../../shared/api/apiSamurais";
+import { setLists } from "../todolist/ListReducer";
 
 export type TasksType = {
   [key: string]: TaskType[];

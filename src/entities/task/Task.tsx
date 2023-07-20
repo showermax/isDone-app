@@ -1,12 +1,12 @@
 import React, { FC, useState } from "react";
-import style from "./Todolist.module.css";
-import calendarIco from "../assets/icons/calendar.svg";
-import editIco from "../assets/icons/edit.svg";
-import deleteIco from "../assets/icons/delete.svg";
-import { deleteTaskTC, editTaskTC, ModelType, TaskType } from "../reducers/TasksReducer";
-import { useAppDispatch } from "../hooks/hooks";
-import { AddForm } from "../helpers/addForm";
-import { TaskDetails } from "../helpers/TaskDetails";
+import style from "../todolist/Todolist.module.css";
+import calendarIco from "../../assets/icons/calendar.svg";
+import editIco from "../../assets/icons/edit.svg";
+import deleteIco from "../../assets/icons/delete.svg";
+import { deleteTaskTC, editTaskTC, ModelType, TaskType } from "./TasksReducer";
+import { useAppDispatch } from "../../shared/hooks/hooks";
+import { AddForm } from "../../features/addForm";
+import { TaskDetails } from "../../features/TaskDetails";
 
 export const Priority = {
   Low: 1,
@@ -41,10 +41,7 @@ export const Task: FC<PropsType> = ({ task }) => {
   const showDetailsHandler = () => {
     setShowDetails(!showDetails)
   }
-  const hideDetailsHandler = ()=>{
-    debugger
-    setShowDetails(false)
-  }
+
   return (
     <>
       { !showAddForm ?

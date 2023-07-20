@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "../hooks/hooks";
-import { ListsSelector } from "../reducers/Selectors";
+import { useAppSelector } from "../shared/hooks/hooks";
+import { ListsSelector } from "../app/Selectors";
 import style from "./Navbar.module.css";
 type PropsType = {
   showForToday: (s: string) => void;

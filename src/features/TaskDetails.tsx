@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import style from './TaskDetails.module.css'
-import { TaskType } from "../reducers/TasksReducer";
+import { TaskType } from "../entities/task/TasksReducer";
 type PropsType = {
   task: TaskType;
 }
