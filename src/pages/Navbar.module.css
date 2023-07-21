@@ -27,3 +27,14 @@ a {
 .addNavbarItem {
   color: darkgrey;
 }
+
+.navbarItem input {
+  color: #fff;
+  resize: none;
+  outline: none;
+  background-color: #26272e;
+  width: 90%;
+  font-size: large;
+  margin: 10px;
+  border: none
+}

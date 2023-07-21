@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 import { NavLink } from "react-router-dom";
 import style from "../../pages/Navbar.module.css";
 import { useAppDispatch, useAppSelector } from "../../shared/hooks/hooks";
@@ -10,10 +10,19 @@ type PropsType = {
 };
 export const NavbarList = (props: PropsType) => {
   const { showForToday } = props;
+  const [showInput, setShowInput] = useState(false)
+  const [newTitle, setNewTitle] = useState( '')
   let lists = useAppSelector(ListsSelector);
   const dispatch = useAppDispatch()
   const addListHandler = () => {
-    dispatch(addListTC('newProject'))
+    dispatch(addListTC(newTitle))
+    setShowInput(false)
+  }
+  const keyDownHandler = (key: KeyboardEvent<HTMLInputElement>) => {
+    if (key.key === 'Enter') addListHandler()
+  }
+  const setTitleHandler = (e:ChangeEvent<HTMLInputElement>) => {
+    setNewTitle(e.currentTarget.value)
   }
   return (
     <>
@@ -26,9 +35,12 @@ export const NavbarList = (props: PropsType) => {
             </div>
           </NavLink>
         ))}
-      <div className={`${style.navbarItem} ${style.addNavbarItem}` } onClick={addListHandler}>
-       <i>+ Add new project</i>
-      </div>
+        {showInput ? <div className={style.navbarItem}>
+            <input autoFocus={true} placeholder={"Title"} onChange={setTitleHandler} value={newTitle} onBlur={addListHandler} onKeyDown={keyDownHandler}></input>
+        </div>
+          : <div className={`${style.navbarItem} ${style.addNavbarItem}`} onClick={() => setShowInput(true)}>
+          <i>+ Add new project</i>
+        </div>}
     </>
   );
 };
