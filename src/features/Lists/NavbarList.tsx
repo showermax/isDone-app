@@ -1,8 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import style from "../../pages/Navbar.module.css";
-import { useAppSelector } from "../../shared/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../shared/hooks/hooks";
 import { ListsSelector } from "../../app/Selectors";
+import { addListTC } from "../../entities/todolist/ListReducer";
 
 type PropsType = {
   showForToday: (s: string) => void;
@@ -10,14 +11,12 @@ type PropsType = {
 export const NavbarList = (props: PropsType) => {
   const { showForToday } = props;
   let lists = useAppSelector(ListsSelector);
+  const dispatch = useAppDispatch()
   const addListHandler = () => {
-
+    dispatch(addListTC('newProject'))
   }
   return (
     <>
-      <div className={style.navbarItem} onClick={addListHandler}>
-        add new
-      </div>
       {lists
         .filter((el) => el.title !== "Inbox")
         .map((el) => (
@@ -27,6 +26,9 @@ export const NavbarList = (props: PropsType) => {
             </div>
           </NavLink>
         ))}
+      <div className={`${style.navbarItem} ${style.addNavbarItem}` } onClick={addListHandler}>
+       <i>+ Add new project</i>
+      </div>
     </>
   );
 };

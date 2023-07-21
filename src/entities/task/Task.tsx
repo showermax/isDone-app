@@ -63,7 +63,7 @@ export const Task: FC<PropsType> = ({ task }) => {
           <AddForm todoLisId={task.todoListId} task={task} showMe={setShowAddForm} saveTask={editTask} hide={true}/>
         </>
       }
-      {showDetails && <TaskDetails task={task} />}
+      {showDetails && !showAddForm && <TaskDetails task={task} />}
     </>
   );
 };

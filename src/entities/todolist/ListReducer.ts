@@ -34,7 +34,7 @@ export const getListsTC = () => async (dispatch: AppDispatch) => {
     // dispatch(getTasksTC());
   } catch (e) {}
 };
-const addListTC = createAsyncThunk('ListReducer/addList', async (title:string, thunkAPI) =>{
+export const addListTC = createAsyncThunk('ListReducer/addList', async (title:string, thunkAPI) =>{
   const {dispatch, rejectWithValue }=thunkAPI
   try{
     const result = await todoListsApi.addList(title)
