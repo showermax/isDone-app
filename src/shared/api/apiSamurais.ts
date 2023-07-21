@@ -22,6 +22,9 @@ export const todoListsApi = {
   getLists() {
     return instance.get<ListType[]>("todo-lists");
   },
+  addList(title:string){
+    return instance.post<PostResponceType<{item:ListType}>>('todo-lists', {title})
+  },
   getTasks(todolistId: string) {
     return instance.get(`todo-lists/${todolistId}/tasks`);
   },

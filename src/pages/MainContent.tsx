@@ -27,7 +27,6 @@ export const MainContent = (props: { showNavbar: boolean }) => {
           <Navbar showForToday={showForToday} />
         </div>
       )}
-
       <div className={style.list}>
         <Routes>
           {lists.map((el) => (

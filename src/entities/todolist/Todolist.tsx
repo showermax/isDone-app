@@ -29,7 +29,7 @@ export const Todolist = (props: PropsType) => {
 
   const date = new Date();
   const today = date.toISOString().slice(0, 10);
-  if (filter) taskSorted = taskSorted.filter((el) => el.deadline && el.deadline.toString().slice(0, 10) === today);
+  if (filter==='Today') taskSorted = taskSorted.filter((el) => el.deadline && el.deadline.toString().slice(0, 10) === today);
   const addTask = (newTask: ModelType & { todoLisId: string }) => {
     dispatch(addTaskTC(id, newTask));
     setShowAddForm(false);
