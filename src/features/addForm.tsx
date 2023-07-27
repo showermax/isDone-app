@@ -66,7 +66,7 @@ export const AddForm: FC<{ todoLisId: string,
           <div className={style.addForm_footer_item}>
             <i>Set due date</i>
             <DatePicker selected={newTask.deadline ? newTask.deadline : null}
-                        value={newTask.deadline ? newTask.deadline.toISOString() :'No deadline'}
+                        value={newTask.deadline ? newTask.deadline.toString() :'No deadline'}
                         filterDate={(date) => new Date() < date}
                         onChange={setDateHandler} customInput={<CustomInput />} />
           </div>
