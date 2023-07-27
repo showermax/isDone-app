@@ -22,6 +22,9 @@ export const NavbarList = (props: PropsType) => {
     dispatch(addListTC(newTitle))
     setShowInput(false)
   }
+  const showSubmenuHandler = (id:string) =>{
+    setShowSubmenu([!showSubmenu[0],id])
+  }
   const editListHandler = () =>{}
   const deleteListHandler = () =>{}
   const keyDownHandler = (key: KeyboardEvent<HTMLInputElement>) => {
@@ -39,7 +42,8 @@ export const NavbarList = (props: PropsType) => {
           <NavLink key={el.id} to={el.title}>
             <div className={style.navbarItem} onClick={() => showForToday("")}>
               <div>{el.title}</div>
-              <img className={style.threeDots} src={dotsIco} alt="delete or edit the project" onClick={()=>setShowSubmenu([!showSubmenu[0],el.id])}/>
+              <img className={style.threeDots} src={dotsIco} alt="delete or edit the project" onClick={()=> {showSubmenuHandler(el.id)}
+              }/>
               {showSubmenu[0] && showSubmenu[1]===el.id && <div className={style.subMenu}>
                 <img className={style.item_right_ico} src={editIco} alt={"edit task"} onClick={editListHandler} />
                 <img className={style.item_right_ico} src={deleteIco} alt={"delete task"} onClick={deleteListHandler} />
