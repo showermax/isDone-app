@@ -4,12 +4,14 @@
   gap: 1rem;
 }
 .navbarItem {
-  /*display: inline-block;*/
+  display: flex;
+  justify-content: space-between;
   margin: 0 10px;
   text-align: left;
   padding: 5%;
   font-size: 1rem;
   cursor: pointer;
+  position:relative;
   /*border: 1px solid white;*/
 }
 .navbarItem a:active,
@@ -37,4 +39,22 @@ a {
   font-size: large;
   margin: 10px;
   border: none
+}
+
+.threeDots {
+width: 24px;
+  color:white;
+}
+
+.subMenu{
+  background-color: #1b1c21;
+  display:inline-flex;
+  position: absolute;
+  right:10px;
+  top:40px;
+  padding:5px;
+}
+.item_right_ico{
+  width:24px;
+  filter: invert(99%) sepia(1%) saturate(5%) hue-rotate(22deg) brightness(102%) contrast(103%);
 }
