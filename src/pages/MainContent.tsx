@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./MainContent.module.css";
 import { Todolist } from "../entities/todolist/Todolist";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../shared/hooks/hooks";
 import { ListsSelector } from "../app/Selectors";
 import { Navbar } from "./Navbar";
@@ -32,6 +32,7 @@ export const MainContent = (props: { showNavbar: boolean }) => {
           {lists.map((el) => (
             <Route key = {el.id} path={`/${el.title}`} element={<Todolist key={el.id} id={el.id} filter={filter} />} />
           ))}
+          <Route path={'/'} element = {<Navigate to = {'Inbox'}/>} />
         </Routes>
       </div>
     </div>
