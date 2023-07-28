@@ -14,7 +14,7 @@ export const Navbar = (props: PropsType) => {
         <TopNavbarList showForToday={showForToday}/>
       </div>
       <div className={style.navbarGroup}>
-        <NavbarList showForToday={showForToday} />
+        <NavbarList/>
       </div>
     </>
   );
