@@ -28,7 +28,7 @@ export const NavbarItem = ({ id, title, editCallback, deleteCallback }: PropsTyp
     setShowSubmenu(false);
   };
   return (
-    <div>
+    <div >
       <NavLink key={id} to={title}>
         <div className={style.navbarItem}>
           <EditableText content={title} callback={setNewTitle} mode={false} />
