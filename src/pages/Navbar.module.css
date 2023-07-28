@@ -47,15 +47,18 @@ width: 24px;
 }
 
 .subMenu{
-  background-color: #1b1c21;
+
   display:inline-flex;
   position: absolute;
-  right:10px;
-  top:40px;
+  right:35px;
+  top:5px;
   padding:10px;
 }
 .item_right_ico{
   width:24px;
   margin-left: 10px;
   filter: invert(99%) sepia(1%) saturate(5%) hue-rotate(22deg) brightness(102%) contrast(103%);
+}
+.item_right_ico:hover{
+  filter: invert(32%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%);
 }
