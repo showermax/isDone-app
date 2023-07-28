@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import style from "../../pages/Navbar.module.css";
-import { EditableText } from "./EditableText";
+import { EditableText } from "../../shared/helpers/EditableText";
 import dotsIco from "../../assets/icons/dots.svg";
 import editIco from "../../assets/icons/edit.svg";
 import deleteIco from "../../assets/icons/delete.svg";

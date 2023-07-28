@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../shared/hooks/hooks";
 import { ListsSelector } from "../../app/Selectors";
 import { addListTC, deleteListTC } from "../../entities/todolist/ListReducer";
 import { EditableText } from "../../shared/helpers/EditableText";
-import { NavbarItem } from "../../shared/helpers/NavbarItem";
+import { NavbarItem } from "./NavbarItem";
 
 export const NavbarList = () => {
   const [showInput, setShowInput] = useState(false)
@@ -26,7 +26,7 @@ export const NavbarList = () => {
         .filter((el) => el.title !== "Inbox")
         .map((el) => (
 
-            <NavbarItem id={el.id} title={el.title} editCallback={editListHandler}
+            <NavbarItem key={el.id} id={el.id} title={el.title} editCallback={editListHandler}
                          deleteCallback={deleteListHandler} />
 
         ))}

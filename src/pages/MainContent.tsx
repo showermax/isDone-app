@@ -30,7 +30,7 @@ export const MainContent = (props: { showNavbar: boolean }) => {
       <div className={style.list}>
         <Routes>
           {lists.map((el) => (
-            <Route path={`/${el.title}`} element={<Todolist key={el.id} id={el.id} filter={filter} />} />
+            <Route key = {el.id} path={`/${el.title}`} element={<Todolist key={el.id} id={el.id} filter={filter} />} />
           ))}
         </Routes>
       </div>
