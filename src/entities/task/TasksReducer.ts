@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { todoListsApi } from "../../shared/api/apiSamurais";
-import { setLists } from "../todolist/ListReducer";
+import { addList, setLists } from "../todolist/ListReducer";
 
 export type TasksType = {
   [key: string]: TaskType[];
@@ -58,7 +58,10 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(setLists, (state, action) => {
       action.payload.lists.forEach((el) => (state[el.id] = []));
-    });
+    })
+      .addCase(addList,(state, action)=>{
+        return {...state, [action.payload.list.id]:[]}
+      });
   },
 });
 export const TasksReducer = slice.reducer;
