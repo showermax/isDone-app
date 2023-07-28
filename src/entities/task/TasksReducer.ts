@@ -88,7 +88,7 @@ export const getAllTasksTC = createAsyncThunk('TasksReducer/getAllTasks', async 
   try {
     let allLists = await todoListsApi.getLists()
     let allListsIds = allLists.data.map(el=>el.id)
-    for (let i = 1; i < allListsIds.length; i++) {
+    for (let i = 0; i < allListsIds.length; i++) {
       const result = await todoListsApi.getTasks(allListsIds[i])
       allTasks = [...allTasks, ...result.data.items]
     }
