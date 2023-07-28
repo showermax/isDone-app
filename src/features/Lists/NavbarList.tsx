@@ -7,6 +7,7 @@ import { ListsSelector } from "../../app/Selectors";
 import { addListTC } from "../../entities/todolist/ListReducer";
 import editIco from "../../assets/icons/edit.svg";
 import deleteIco from "../../assets/icons/delete.svg";
+import { EditableText } from "../../shared/helpers/EditableText";
 
 type PropsType = {
   showForToday: (s: string) => void;
@@ -33,9 +34,10 @@ export const NavbarList = (props: PropsType) => {
   const setTitleHandler = (e:ChangeEvent<HTMLInputElement>) => {
     setNewTitle(e.currentTarget.value)
   }
-  console.log(showSubmenu);
+  console.log(showInput);
   return (
     <>
+      <EditableText content={'editable text'} callback={setNewTitle} mode={true} />
       {lists
         .filter((el) => el.title !== "Inbox")
         .map((el) => (
