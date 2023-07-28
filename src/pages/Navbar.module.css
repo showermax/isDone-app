@@ -52,9 +52,10 @@ width: 24px;
   position: absolute;
   right:10px;
   top:40px;
-  padding:5px;
+  padding:10px;
 }
 .item_right_ico{
   width:24px;
+  margin-left: 10px;
   filter: invert(99%) sepia(1%) saturate(5%) hue-rotate(22deg) brightness(102%) contrast(103%);
 }

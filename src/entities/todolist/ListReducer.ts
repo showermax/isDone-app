@@ -41,7 +41,6 @@ export const addListTC = createAsyncThunk('ListReducer/addList', async (title:st
     if (result.data.resultCode === 0) dispatch(addList({list: result.data.data.item}))
   }
   catch (e) {
-
   }
 })
 // export const ListReducer = (state: ListType[] = InitialState, action: any): ListType[] => {
