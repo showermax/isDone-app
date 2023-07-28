@@ -9,7 +9,7 @@ type PropsType = {
 export const EditableText = ({ content, callback, as, mode }: PropsType) => {
   const [editableMode, setEditableMode] = useState(mode);
   const [newText, setNewText] = useState(content)
-  console.log(newText);
+
   const setTextHandler = (e:ChangeEvent<HTMLInputElement>) => {
     setNewText(e.currentTarget.value)
   }
@@ -21,7 +21,7 @@ export const EditableText = ({ content, callback, as, mode }: PropsType) => {
   const keyDownHandler =(e: KeyboardEvent<HTMLInputElement>)=>{
     if (e.key==='Enter') setEditHandler()
   }
-  console.log(editableMode);
+
   return (
     <>
       {editableMode ?

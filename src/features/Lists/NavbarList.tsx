@@ -1,20 +1,12 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
 import style from "../../pages/Navbar.module.css";
-import dotsIco from "../../assets/icons/dots.svg";
 import { useAppDispatch, useAppSelector } from "../../shared/hooks/hooks";
 import { ListsSelector } from "../../app/Selectors";
 import { addListTC, deleteListTC } from "../../entities/todolist/ListReducer";
-import editIco from "../../assets/icons/edit.svg";
-import deleteIco from "../../assets/icons/delete.svg";
 import { EditableText } from "../../shared/helpers/EditableText";
 import { NavbarItem } from "../../shared/helpers/NavbarItem";
 
-type PropsType = {
-  showForToday?: (s: string) => void;
-};
-export const NavbarList = (props: PropsType) => {
-  const { showForToday } = props;
+export const NavbarList = () => {
   const [showInput, setShowInput] = useState(false)
   let lists = useAppSelector(ListsSelector);
   const dispatch = useAppDispatch()
