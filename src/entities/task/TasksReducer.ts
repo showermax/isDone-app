@@ -79,7 +79,7 @@ export const getTasksTC = (todoListId: string) => async (dispatch: Dispatch) => 
   } catch (e) {}
 };
 
-export const getAllTasksTC = createAsyncThunk('TasksReducer/getallTasks', async (arg,ThunkAPI)=>{
+export const getAllTasksTC = createAsyncThunk('TasksReducer/getAllTasks', async (arg,ThunkAPI)=>{
 
   const {dispatch} = ThunkAPI
   let allTasks:TaskType[] = []

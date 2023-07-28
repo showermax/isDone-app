@@ -33,7 +33,7 @@ export const MainContent = (props: { showNavbar: boolean }) => {
             <Route key = {el.id} path={`/${el.title}`} element={<Todolist key={el.id} id={el.id} filter={filter} />} />
           ))}
           <Route path={'/'} element = {<Navigate to = {'Inbox'}/>} />
-          <Route path={'123'} element = {<FilteredTodolist filter={filter} />} />
+          <Route path={'Today'} element = {<FilteredTodolist filter={'Today'} />} />
         </Routes>
       </div>
     </div>
