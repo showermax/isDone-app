@@ -4,7 +4,7 @@ import style from "../../pages/Navbar.module.css";
 import dotsIco from "../../assets/icons/dots.svg";
 import { useAppDispatch, useAppSelector } from "../../shared/hooks/hooks";
 import { ListsSelector } from "../../app/Selectors";
-import { addListTC } from "../../entities/todolist/ListReducer";
+import { addListTC, deleteListTC } from "../../entities/todolist/ListReducer";
 import editIco from "../../assets/icons/edit.svg";
 import deleteIco from "../../assets/icons/delete.svg";
 import { EditableText } from "../../shared/helpers/EditableText";
@@ -27,14 +27,15 @@ export const NavbarList = (props: PropsType) => {
     setShowSubmenu([!showSubmenu[0],id])
   }
   const editListHandler = () =>{}
-  const deleteListHandler = () =>{}
+  const deleteListHandler = (id:string) =>{
+    dispatch(deleteListTC(id))
+  }
   const keyDownHandler = (key: KeyboardEvent<HTMLInputElement>) => {
     if (key.key === 'Enter') addListHandler()
   }
   const setTitleHandler = (e:ChangeEvent<HTMLInputElement>) => {
     setNewTitle(e.currentTarget.value)
   }
-  console.log(showInput);
   return (
     <>
       {lists
@@ -47,7 +48,7 @@ export const NavbarList = (props: PropsType) => {
               }/>
               {showSubmenu[0] && showSubmenu[1]===el.id && <div className={style.subMenu}>
                 <img className={style.item_right_ico} src={editIco} alt={"edit task"} onClick={editListHandler} />
-                <img className={style.item_right_ico} src={deleteIco} alt={"delete task"} onClick={deleteListHandler} />
+                <img className={style.item_right_ico} src={deleteIco} alt={"delete task"} onClick={()=>deleteListHandler(el.id)} />
               </div>}
             </div>
           </NavLink>

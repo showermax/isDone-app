@@ -20,12 +20,15 @@ const slice = createSlice({
     },
     addList (state, action: PayloadAction<{list: ListType}>) {
       state.push( action.payload.list )
+    },
+    deleteList (state, action: PayloadAction<{id:string}>){
+      return state.filter(el=>el.id!==action.payload.id)
     }
   },
 });
 
 export const ListReducer = slice.reducer;
-export const { setLists, addList } = slice.actions;
+export const { setLists, addList, deleteList } = slice.actions;
 
 export const getListsTC = () => async (dispatch: AppDispatch) => {
   try {
@@ -41,6 +44,17 @@ export const addListTC = createAsyncThunk('ListReducer/addList', async (title:st
     if (result.data.resultCode === 0) dispatch(addList({list: result.data.data.item}))
   }
   catch (e) {
+  }
+})
+
+export const deleteListTC = createAsyncThunk('ListReducer/deleteList', async (id:string, thunkAPI) =>{
+  const {dispatch} = thunkAPI
+  try {
+    const result = await todoListsApi.deleteList(id)
+    if (result.data.resultCode === 0) dispatch(deleteList({id}))
+  }
+  catch (e) {
+    
   }
 })
 // export const ListReducer = (state: ListType[] = InitialState, action: any): ListType[] => {
