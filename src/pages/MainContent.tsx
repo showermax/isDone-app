@@ -7,12 +7,12 @@ import { ListsSelector } from "../app/Selectors";
 import { Navbar } from "./Navbar";
 
 import { getListsTC } from "../entities/todolist/ListReducer";
+import { FilteredTodolist } from "../entities/todolist/FilteredTodolist";
 
 export const MainContent = (props: { showNavbar: boolean }) => {
   const [filter, setFilter] = useState("");
   let lists = useAppSelector(ListsSelector);
   const dispatch = useAppDispatch();
-
   useEffect(() => {
     dispatch(getListsTC());
   }, [dispatch]);
@@ -33,6 +33,7 @@ export const MainContent = (props: { showNavbar: boolean }) => {
             <Route key = {el.id} path={`/${el.title}`} element={<Todolist key={el.id} id={el.id} filter={filter} />} />
           ))}
           <Route path={'/'} element = {<Navigate to = {'Inbox'}/>} />
+          <Route path={'123'} element = {<FilteredTodolist filter={filter} />} />
         </Routes>
       </div>
     </div>

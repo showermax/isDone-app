@@ -9,14 +9,14 @@ export type ListType = {
   title: string;
 };
 
-const initialState: ListType[] = [];
+const initialState: ListType[] = [{id:'all', title:'All',addedDate:new Date(),order:0}];
 
 const slice = createSlice({
   name: "ListReducer",
   initialState,
   reducers: {
     setLists(state, action: PayloadAction<{ lists: ListType[] }>) {
-      return action.payload.lists;
+      return [...initialState,...action.payload.lists];
     },
     addList (state, action: PayloadAction<{list: ListType}>) {
       state.push( action.payload.list )

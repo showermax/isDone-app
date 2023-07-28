@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { todoListsApi } from "../../shared/api/apiSamurais";
 import { addList, setLists } from "../todolist/ListReducer";
 
@@ -30,7 +30,9 @@ export type ModelType = {
   deadline?: Date | null;
 };
 
-let initialState: TasksType = {};
+let initialState: TasksType = {
+  'all':[]
+};
 
 const slice = createSlice({
   name: "TasksReducer",
@@ -38,6 +40,9 @@ const slice = createSlice({
   reducers: {
     setTasks(state, action: PayloadAction<{ tasks: TaskType[]; todoListId: string }>) {
       state[action.payload.todoListId] = action.payload.tasks;
+    },
+    setAllTasks(state,action: PayloadAction<{tasks: TaskType[]}>){
+      state['all']=action.payload.tasks
     },
     addTask(state, action: PayloadAction<{ todoListId: string; newTask: TaskType }>) {
       state[action.payload.todoListId].push(action.payload.newTask);
@@ -65,7 +70,7 @@ const slice = createSlice({
   },
 });
 export const TasksReducer = slice.reducer;
-export const { setTasks, addTask, editTask, deleteTask } = slice.actions;
+export const { setTasks, setAllTasks, addTask, editTask, deleteTask } = slice.actions;
 
 export const getTasksTC = (todoListId: string) => async (dispatch: Dispatch) => {
   try {
@@ -74,6 +79,23 @@ export const getTasksTC = (todoListId: string) => async (dispatch: Dispatch) => 
   } catch (e) {}
 };
 
+export const getAllTasksTC = createAsyncThunk('TasksReducer/getallTasks', async (arg,ThunkAPI)=>{
+
+  const {dispatch} = ThunkAPI
+  let allTasks:TaskType[] = []
+  try {
+    let allLists = await todoListsApi.getLists()
+    let allListsIds = allLists.data.map(el=>el.id)
+    for (let i = 1; i < allListsIds.length; i++) {
+      const result = await todoListsApi.getTasks(allListsIds[i])
+      allTasks = [...allTasks, ...result.data.items]
+    }
+    dispatch(setAllTasks({tasks: allTasks}))
+
+  } catch (e) {
+
+  }
+})
 export const addTaskTC = (todoListId: string, newtask: ModelType) => async (dispatch: Dispatch) => {
   try {
     let task = await todoListsApi.addTask(todoListId, newtask);

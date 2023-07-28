@@ -15,9 +15,14 @@ export const TopNavbarList = (props: PropsType) => {
         </div>
       </NavLink>
 
-      <NavLink to={"Inbox"}>
+      <NavLink to={"Today"}>
         <div className={style.navbarItem} onClick={() => showForToday("Today")}>
           Today
+        </div>
+      </NavLink>
+      <NavLink to={"123"}>
+        <div className={style.navbarItem} onClick={() => showForToday("")}>
+          123
         </div>
       </NavLink>
     </>

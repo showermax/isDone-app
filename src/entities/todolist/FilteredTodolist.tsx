@@ -2,37 +2,39 @@ import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../shared/hooks/hooks";
 import style from "./Todolist.module.css";
 
-import { addTaskTC, getTasksTC, ModelType } from "../task/TasksReducer";
+import { addTaskTC, getAllTasksTC, getTasksTC, ModelType } from "../task/TasksReducer";
 import { Task } from "../task/Task";
 import { AddForm } from "../../features/addForm";
-import { TasksSelector } from "../../app/Selectors";
+import { ListsIdsSelector, ListsSelector, TasksSelector } from "../../app/Selectors";
 import { useOutsideClick } from "../../shared/hooks/useOutsideClick";
+import { getListsTC, ListReducer } from "./ListReducer";
 
 type PropsType = {
-  id: string;
   filter: string;
 };
-export const Todolist = (props: PropsType) => {
-  const { id, filter } = props;
+export const FilteredTodolist = (props: PropsType) => {
+  const { filter } = props;
 
   let tasks = useAppSelector(TasksSelector);
-  let taskSorted = [...tasks[id]];
+
+
+  let taskSorted = [...tasks['all']];
 
   taskSorted.sort((a, b) => b.order - a.order);
 
   let dispatch = useAppDispatch();
   const [showAddForm, setShowAddForm] = useState(false);
-
+  console.log('rendered');
   useEffect(() => {
-    dispatch(getTasksTC(id));
-  }, [dispatch, id]);
-
+    dispatch(getAllTasksTC());
+  }, [dispatch]);
+  console.log(tasks);
   const date = new Date();
   const today = date.toISOString().slice(0, 10);
   if (filter==='Today') taskSorted = taskSorted.filter((el) => el.deadline && el.deadline.toString().slice(0, 10) === today);
   const addTask = (newTask: ModelType & { todoLisId: string }) => {
-    dispatch(addTaskTC(id, newTask));
-    setShowAddForm(false);
+    // dispatch(addTaskTC(id, newTask));
+    // setShowAddForm(false);
   };
 
   return (
@@ -48,7 +50,7 @@ export const Todolist = (props: PropsType) => {
         </div>
         :
         <div>
-          <AddForm todoLisId={id} task={{
+          <AddForm todoLisId={'all'} task={{
             description: '',
             title: '',
             completed: false,
