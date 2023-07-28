@@ -43,24 +43,10 @@ export const NavbarList = (props: PropsType) => {
       {lists
         .filter((el) => el.title !== "Inbox")
         .map((el) => (
-          <>
-            {/*<NavbarItem id={el.id} title={el.title} editCallback={editListHandler}*/}
-            {/*             deleteCallback={deleteListHandler} />*/}
-            <NavLink key={el.id} to={el.title}>
-              <div className={style.navbarItem} onClick={() => {
-              }}>
-                <EditableText content={el.title} callback={addListHandler} mode={false} />
-                <img className={style.threeDots} src={dotsIco} alt="delete or edit the project" onClick={() => {
-                  showSubmenuHandler(el.id);
-                }
-                } />
-                {showSubmenu[0] && showSubmenu[1] === el.id && <div className={style.subMenu}>
-                  <img className={style.item_right_ico} src={editIco} alt={"edit task"} onClick={editListHandler} />
-                  <img className={style.item_right_ico} src={deleteIco} alt={"delete task"}
-                       onClick={() => deleteListHandler(el.id)} />
-                </div>}
-              </div>
-            </NavLink></>
+
+            <NavbarItem id={el.id} title={el.title} editCallback={editListHandler}
+                         deleteCallback={deleteListHandler} />
+
         ))}
         {showInput ? <div className={style.navbarItem}>
             {/*<input autoFocus={true} placeholder={"Title"} onChange={setTitleHandler} value={newTitle} onBlur={addListHandler} onKeyDown={keyDownHandler}></input>*/}
