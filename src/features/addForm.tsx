@@ -52,7 +52,7 @@ export const AddForm: FC<{ todoLisId: string,
     setNewTask({description: '', title: '', status: 0, priority: 1, startDate: null, deadline: null,todoLisId})
     console.log(newTask);
   }
-  // }
+  
   return (
     <div className={style.addForm}>
       <textarea rows={2} autoFocus={true} placeholder={"Title"} onChange={setTitleHandler} value={newTask.title}></textarea>
