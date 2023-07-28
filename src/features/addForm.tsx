@@ -9,6 +9,7 @@ import { Priority } from "../entities/task/Task";
 
 
 
+
 export type PriorityType = "Low" | "Middle" | "High" | "Urgently" | "Later"
 export const AddForm: FC<{ todoLisId: string,
   task: TaskType,
@@ -45,12 +46,10 @@ export const AddForm: FC<{ todoLisId: string,
     showMe(false)
     setNewTask({description: '', title: '', status: 0, priority: 1, startDate: null, deadline: null,todoLisId})
     saveTask(newTask)
-    console.log(newTask);
   }
   const cancelHandler = () =>{
     showMe(false)
     setNewTask({description: '', title: '', status: 0, priority: 1, startDate: null, deadline: null,todoLisId})
-    console.log(newTask);
   }
   
   return (

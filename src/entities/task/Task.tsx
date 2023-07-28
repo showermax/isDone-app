@@ -7,6 +7,7 @@ import { deleteTaskTC, editTaskTC, ModelType, TaskType } from "./TasksReducer";
 import { useAppDispatch } from "../../shared/hooks/hooks";
 import { AddForm } from "../../features/addForm";
 import { TaskDetails } from "../../features/TaskDetails";
+import { useOutsideClick } from "../../shared/hooks/useOutsideClick";
 
 export const Priority = {
   Low: 1,
@@ -41,6 +42,11 @@ export const Task: FC<PropsType> = ({ task }) => {
   const showDetailsHandler = () => {
     setShowDetails(!showDetails)
   }
+  const handleClickOutside = () => {
+    setShowAddForm(false);
+  };
+
+  const ref = useOutsideClick(handleClickOutside)
 
   return (
     <>
@@ -59,11 +65,11 @@ export const Task: FC<PropsType> = ({ task }) => {
         </div>
       </div>
         :
-        <>
+        <div ref={ref}>
           <AddForm todoLisId={task.todoListId} task={task} showMe={setShowAddForm} saveTask={editTask} hide={true}/>
-        </>
+        </div>
       }
-      {showDetails && !showAddForm && <TaskDetails task={task} />}
+      {showDetails && !showAddForm && <div><TaskDetails task={task} /> </div> }
     </>
   );
 };

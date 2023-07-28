@@ -5,14 +5,17 @@ import { ListsSelector } from "../../app/Selectors";
 import { addListTC, deleteListTC } from "../../entities/todolist/ListReducer";
 import { EditableText } from "../../shared/helpers/EditableText";
 import { NavbarItem } from "./NavbarItem";
+import { useNavigate } from "react-router-dom";
 
 export const NavbarList = () => {
   const [showInput, setShowInput] = useState(false)
   let lists = useAppSelector(ListsSelector);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch()
   const addListHandler = (newTitle:string) => {
     dispatch(addListTC(newTitle))
     setShowInput(false)
+    navigate(newTitle)
   }
 
   const editListHandler = () =>{}

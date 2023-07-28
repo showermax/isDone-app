@@ -6,6 +6,7 @@ import { addTaskTC, getTasksTC, ModelType } from "../task/TasksReducer";
 import { Task } from "../task/Task";
 import { AddForm } from "../../features/addForm";
 import { TasksSelector } from "../../app/Selectors";
+import { useOutsideClick } from "../../shared/hooks/useOutsideClick";
 
 type PropsType = {
   id: string;
