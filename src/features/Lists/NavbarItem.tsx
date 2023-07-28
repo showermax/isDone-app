@@ -5,6 +5,7 @@ import { EditableText } from "../../shared/helpers/EditableText";
 import dotsIco from "../../assets/icons/dots.svg";
 import editIco from "../../assets/icons/edit.svg";
 import deleteIco from "../../assets/icons/delete.svg";
+import { useOutsideClick } from "../../shared/hooks/useOutsideClick";
 
 type PropsType = {
   id: string,
@@ -27,8 +28,12 @@ export const NavbarItem = ({ id, title, editCallback, deleteCallback }: PropsTyp
     deleteCallback(id);
     setShowSubmenu(false);
   };
+  const handleClickOutside = () => {
+    setShowSubmenu(false);
+  };
+  const ref = useOutsideClick(handleClickOutside)
   return (
-    <div >
+    <div ref={ref}>
       <NavLink key={id} to={title}>
         <div className={style.navbarItem}>
           <EditableText content={title} callback={setNewTitle} mode={false} />
