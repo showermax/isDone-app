@@ -16,28 +16,18 @@ type PropsType = {
 export const NavbarList = (props: PropsType) => {
   const { showForToday } = props;
   const [showInput, setShowInput] = useState(false)
-  const [showSubmenu, setShowSubmenu] = useState([false,''])
-  // const [newTitle, setNewTitle] = useState( '')
   let lists = useAppSelector(ListsSelector);
   const dispatch = useAppDispatch()
   const addListHandler = (newTitle:string) => {
     dispatch(addListTC(newTitle))
     setShowInput(false)
   }
-  const showSubmenuHandler = (id:string) =>{
-    setShowSubmenu([!showSubmenu[0],id])
-  }
+
   const editListHandler = () =>{}
   const deleteListHandler = (id:string) =>{
     dispatch(deleteListTC(id))
   }
-  const keyDownHandler = (key: KeyboardEvent<HTMLInputElement>) => {
-    // if (key.key === 'Enter') addListHandler()
-  }
-  const setTitleHandler = (newTitle:string) => {
-    // setNewTitle(newTitle)
-    // setShowInput(false)
-  }
+
   return (
     <>
       {lists
