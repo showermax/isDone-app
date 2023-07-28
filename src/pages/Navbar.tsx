@@ -3,15 +3,13 @@ import style from "./Navbar.module.css";
 import { TopNavbarList } from "../features/Lists/TopNavbarList";
 import { NavbarList } from "../features/Lists/NavbarList";
 
-type PropsType = {
-  showForToday: (s: string) => void;
-};
-export const Navbar = (props: PropsType) => {
-  const { showForToday } = props;
+
+export const Navbar = () => {
+
   return (
     <>
       <div className={style.navbarGroup}>
-        <TopNavbarList showForToday={showForToday}/>
+        <TopNavbarList />
       </div>
       <div className={style.navbarGroup}>
         <NavbarList/>

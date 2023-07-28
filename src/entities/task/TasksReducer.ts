@@ -51,13 +51,15 @@ const slice = createSlice({
       return {
         ...state,
         [action.payload.task.todoListId]: state[action.payload.task.todoListId].map((el) =>
-          el.id === action.payload.task.id ? action.payload.task : el,
-        ),
+          el.id === action.payload.task.id ? action.payload.task : el),
+          ['all']: state['all'].map(el=>el.id === action.payload.task.id ? action.payload.task : el),
       };
     },
     deleteTask (state,action: PayloadAction<{todoListId: string, taskId: string}>) {
       let index = state[action.payload.todoListId].findIndex((t) => t.id === action.payload.taskId)
       if (index!==-1) state[action.payload.todoListId].splice(index, 1)
+      let indexAll = state['all'].findIndex((t) => t.id === action.payload.taskId)
+      if (indexAll!==-1) state['all'].splice(indexAll, 1)
     }
   },
   extraReducers: (builder) => {

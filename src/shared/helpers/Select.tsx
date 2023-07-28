@@ -21,7 +21,6 @@ export const Select:FC<{todoLisId: string,
     setCurrentValue(e.currentTarget.value)
   }
 
-  console.log(currentValue, value);
   return (
     <select className={`${style.customButton} ${style.select}`} onChange={selectHandler}>
       {options.map(el=><option value={ el.id ? el.id : el.title} selected={el.id===todoLisId}>{el.title}</option>)}

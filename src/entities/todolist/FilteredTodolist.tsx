@@ -13,7 +13,7 @@ export const FilteredTodolist = (props: PropsType) => {
   const { filter } = props;
 
   let tasks = useAppSelector(TasksSelector);
-
+  console.log('rendered');
 
   let taskSorted = [...tasks["all"]];
 
@@ -36,7 +36,6 @@ export const FilteredTodolist = (props: PropsType) => {
       {taskSorted.map((el) => (
         <Task task={el} key={el.id} />
       ))}
-
     </div>
   );
 };

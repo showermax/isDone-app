@@ -6,14 +6,13 @@ import { addTaskTC, getTasksTC, ModelType } from "../task/TasksReducer";
 import { Task } from "../task/Task";
 import { AddForm } from "../../features/addForm";
 import { TasksSelector } from "../../app/Selectors";
-import { useOutsideClick } from "../../shared/hooks/useOutsideClick";
 
 type PropsType = {
   id: string;
-  filter: string;
+
 };
 export const Todolist = (props: PropsType) => {
-  const { id, filter } = props;
+  const { id } = props;
 
   let tasks = useAppSelector(TasksSelector);
   let taskSorted = [...tasks[id]];
@@ -27,9 +26,6 @@ export const Todolist = (props: PropsType) => {
     dispatch(getTasksTC(id));
   }, [dispatch, id]);
 
-  const date = new Date();
-  const today = date.toISOString().slice(0, 10);
-  if (filter==='Today') taskSorted = taskSorted.filter((el) => el.deadline && el.deadline.toString().slice(0, 10) === today);
   const addTask = (newTask: ModelType & { todoLisId: string }) => {
     dispatch(addTaskTC(id, newTask));
     setShowAddForm(false);
