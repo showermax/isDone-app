@@ -37,13 +37,12 @@ export const NavbarList = (props: PropsType) => {
   console.log(showInput);
   return (
     <>
-      <EditableText content={'editable text'} callback={setNewTitle} mode={true} />
       {lists
         .filter((el) => el.title !== "Inbox")
         .map((el) => (
           <NavLink key={el.id} to={el.title}>
             <div className={style.navbarItem} onClick={() => showForToday("")}>
-              <div>{el.title}</div>
+              <EditableText content={el.title} callback={setNewTitle} mode={false} />
               <img className={style.threeDots} src={dotsIco} alt="delete or edit the project" onClick={()=> {showSubmenuHandler(el.id)}
               }/>
               {showSubmenu[0] && showSubmenu[1]===el.id && <div className={style.subMenu}>
@@ -54,7 +53,8 @@ export const NavbarList = (props: PropsType) => {
           </NavLink>
         ))}
         {showInput ? <div className={style.navbarItem}>
-            <input autoFocus={true} placeholder={"Title"} onChange={setTitleHandler} value={newTitle} onBlur={addListHandler} onKeyDown={keyDownHandler}></input>
+            {/*<input autoFocus={true} placeholder={"Title"} onChange={setTitleHandler} value={newTitle} onBlur={addListHandler} onKeyDown={keyDownHandler}></input>*/}
+            <EditableText content={newTitle} callback={setNewTitle} mode={showInput} />
         </div>
           : <div className={`${style.navbarItem} ${style.addNavbarItem}`} onClick={() => setShowInput(true)}>
           <i>+ Add new project</i>
