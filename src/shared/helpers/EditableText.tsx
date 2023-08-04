@@ -1,11 +1,11 @@
-import React, { ChangeEvent, Component, KeyboardEvent, useState } from "react";
+import React, { ChangeEvent, Component, ComponentPropsWithoutRef, ElementType, KeyboardEvent, useState } from "react";
 
-type PropsType = {
-  as?: any,
+type PropsType<T extends ElementType = 'div'> = {
+  as?: T,
   content: string,
   callback: (s: string) => void,
   mode: boolean
-}
+} & ComponentPropsWithoutRef<T>
 export const EditableText = ({ content, callback, as: Component = 'div', mode }: PropsType) => {
   const [editableMode, setEditableMode] = useState(mode);
   const [newText, setNewText] = useState(content)
