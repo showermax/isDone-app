@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from "react";
+import React, { ChangeEvent, Component, KeyboardEvent, useState } from "react";
 
 type PropsType = {
   as?: any,
@@ -6,7 +6,7 @@ type PropsType = {
   callback: (s: string) => void,
   mode: boolean
 }
-export const EditableText = ({ content, callback, as, mode }: PropsType) => {
+export const EditableText = ({ content, callback, as: Component = 'div', mode }: PropsType) => {
   const [editableMode, setEditableMode] = useState(mode);
   const [newText, setNewText] = useState(content)
 
@@ -27,7 +27,7 @@ export const EditableText = ({ content, callback, as, mode }: PropsType) => {
       {editableMode ?
         <input autoFocus={true} placeholder={"Title"} onChange={setTextHandler} value={newText} onBlur={setEditHandler} onKeyDown={keyDownHandler} ></input>
         :
-        <div onDoubleClick={()=>setEditableMode(true)}>{content}</div>}
+        <Component onDoubleClick={()=>setEditableMode(true)}>{content}</Component>}
     </>
   );
 };
